@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   variadic_max.c                                     :+:      :+:    :+:   */
+/*   variadic_printf.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/03 14:50:49 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/03 16:56:30 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,43 @@
 #include <stdarg.h> //this for variadic functions
 #include <string.h> //this for handeling strings
 
-//nice viedo about variadic functions:
-//https://www.youtube.com/watch?v=3iX9a_l9W9Y
-
-int		max(int num_args, ...);
-void	print(char *placeholders, ...);
+int				print(char *placeholders, ...);
 
 int	main(void)
 {
-	int	max_num;
-
-	max_num = max(4, 5, 6, 2, 27);
-	printf("Max num is: %d\n\n\n", max_num);
+	print("dfdf", 3, 1.1, 6, 77.7);
 	return (0);
 }
 
-int	max(int num_args, ...)
+
+
+int	ft_printf(char const *placeholders, ...)
 {
 	va_list	args;
 	int		i;
 	int		x;
-	int		max;
+	double	dbl;
+	int		num_args;
 
+	num_args = strlen(placeholders);
+	va_start(args, placeholders);
 	i = 0;
-	max = 0;
-	va_start(args, num_args);
 
 	while (i < num_args)
 	{
-		x = va_arg(args, int);
-		printf("arg %d - x: %d\n", i, x);
-		if (x > max)
-			max = x;
+		if (placeholders[i] == 'd')
+		{
+			x = va_arg(args, int);
+			printf("%%d: %d", x);
+		}
+		else if (placeholders[i] == 'f')
+		{
+			dbl = va_arg(args, int);
+			printf("%%f: %f", dbl);
+		}
+		printf("\n");
 		i++;
 	}
 	printf("\n");
 	va_end(args);
-
-	return (max);
 }

@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/05 00:00:13 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/05 00:31:57 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void			ft_puthexa(unsigned int nb);
 
 unsigned long	ft_len_str(const char *s);
 int				ft_len_int(int nb, char c);
-char			*ft_strpercent(const char *s);
+char			*ft_text_find_percent(const char *s);
 const char		*ft_text_read(char const *text, t_print *struc);
-const char		*ft_text_search(const char *text, t_print *struc, va_list arg);
+const char		*ft_text_percent(const char *text, t_print *struc, va_list arg);
 int				ft_printf(const char *text, ...);
 
 
@@ -104,14 +104,14 @@ unsigned long	ft_len_str(const char *s)
 	return (i);
 }
 
-char	*ft_strpercent(const char *s)
+char	*ft_text_find_percent(const char *s)
 {
 	while (*s)
 	{
 		if (*s == '%')
 		{
-			printf("\n-----> (char *)s: %s", (char *)s);
-			printf("\n-----> *s: %c\n", *s);
+			// printf("\n-----> (char *)s: %s", (char *)s);
+			// printf("\n-----> *s: %c\n", *s);
 			return ((char *)s);
 		}
 		s++;
@@ -160,7 +160,7 @@ int	ft_len_int(int nb, char c)
 	return (0);
 }
 
-const char		*ft_text_search(const char *text, t_print *struc, va_list arg)
+const char		*ft_text_percent(const char *text, t_print *struc, va_list arg)
 {
 	if (*text == 'd')
 	{
@@ -199,7 +199,7 @@ const char	*ft_text_read(char const *text, t_print *struc)
 {
 	char	*next;
 
-	next = ft_strpercent(text);
+	next = ft_text_find_percent(text);
 	if (next)
 		struc->width = next - text;
 	else
@@ -215,23 +215,29 @@ int	ft_printf(const char *text, ...)
 {
 	va_list	args;
 	t_print	struc;
+	int		i;
 
+	i = 0;
 	va_start(args, text);
 	struc.width = 0;
 	struc.length = 0;
 	while (*text)
 	{
+		printf("\n-ITERACION: %i", i);
+		printf("\n-char entrada: %c", *text);
+		printf("\n-string pendiente entrada: %s", (char *)text);
 		if (*text == '%')
 		{
-			printf("||1st char antes de ft_text_search '%c'||", *text);
-			text = ft_text_search(text, &struc, args);
+			// printf("||1st char antes de ft_text_percent '%c'||", *text);
+			text = ft_text_percent(text, &struc, args);
 		}
 		else
 		{
-			printf("||1st char antes de ft_text_read '%c'||", *text);
+			// printf("||1st char antes de ft_text_read '%c'||", *text);
 			text = ft_text_read(text, &struc);
 		}
-		printf("||char después %c||", *text);
+		printf("\n-char salida: %c", *text);
+		printf("\n-string pendiente salida: %s", (char *)text);
 
 		// if (!text)
 		// {
@@ -239,6 +245,7 @@ int	ft_printf(const char *text, ...)
 		// 	va_end(args);
 		// 	return (struc.length);
 		// }
+		++i;
 		++text;
 	}
 	va_end(args);
@@ -266,14 +273,17 @@ int	ft_printf(const char *text, ...)
 
 int	main(void)
 {
-	//TEST 1 - Solo TEXTO, sin variables
-	printf("\nTEST 1\n");
-	printf("Solo TEXTO, sin variables\n");
-	int res11 = printf("hola qué tal\n");
-	int res12 = ft_printf("hola qué tal\n");
-	char *restest1 = res11 == res12 ? "OK" : "FAILLLLL";
-	printf("res printf: %i\nres ft_printf: %i\n",res11, res12);
-	printf("TEST 1 - %s\n", restest1);
+	printf("\nTEST 1");
+	
+	int	res11 = printf("\nhola qué tal %i, %i, %i... probando\n", 1, 2, 3);
+	int	res12 = ft_printf("\nhola qué tal %i, %i, %i... probando\n", 1, 2, 3);
+	char *restest1;
+	if (res11 == res12)
+		restest1 = "OK";
+	else
+		restest1 = "FAILLLLL";
+	printf("\nres printf: %i\nres ft_printf: %i",res11, res12);
+	printf("\nTEST 1 --> %s", restest1);
 
 	// //TEST 2 - 1 variable tipo STRING NULL
 	// printf("\nTEST 2\n");
@@ -302,6 +312,9 @@ int	main(void)
 	// char *restest4 = res41 == res42 ? "OK" : "FAILLLLL";
 	// printf("res printf: %i\nres ft_printf: %i\n",res41, res42);
 	// printf("TEST 4 - %s\n", restest4);
+
+	// printf("Solo TEXTO, sin variables\n");
+
 	return (0);
 
 }

@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/04 16:31:25 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/05 00:00:13 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void			ft_puthexa(unsigned int nb);
 unsigned long	ft_len_str(const char *s);
 int				ft_len_int(int nb, char c);
 char			*ft_strpercent(const char *s);
-const char		*ft_text_read(t_print *my_struc, char const *text);
-const char		*ft_text_search(va_list arg, const char *text, t_print *my_struc);
+const char		*ft_text_read(char const *text, t_print *struc);
+const char		*ft_text_search(const char *text, t_print *struc, va_list arg);
 int				ft_printf(const char *text, ...);
 
 
@@ -109,7 +109,11 @@ char	*ft_strpercent(const char *s)
 	while (*s)
 	{
 		if (*s == '%')
+		{
+			printf("\n-----> (char *)s: %s", (char *)s);
+			printf("\n-----> *s: %c\n", *s);
 			return ((char *)s);
+		}
 		s++;
 	}
 	if (!s)
@@ -156,13 +160,13 @@ int	ft_len_int(int nb, char c)
 	return (0);
 }
 
-const char		*ft_text_search(va_list arg, const char *text, t_print *my_struc)
+const char		*ft_text_search(const char *text, t_print *struc, va_list arg)
 {
 	if (*text == 'd')
 	{
 		int d = va_arg(arg, int);
 		ft_putnumber(d);
-		my_struc->length = ft_len_int(d, *text);
+		struc->length = ft_len_int(d, *text);
 	}
 	else if (*text == 's')
 	{
@@ -170,19 +174,19 @@ const char		*ft_text_search(va_list arg, const char *text, t_print *my_struc)
 		if (!s)
 		{
 			write(1, "(null)", 6);
-			my_struc->length += 6;
+			struc->length += 6;
 		}
 		else
 		{
 			ft_putstring(s);
-			my_struc->length = ft_len_str(s);
+			struc->length = ft_len_str(s);
 		}
 	}
 	else if (*text == 'x')
 	{
 		unsigned int x = va_arg(arg, unsigned int);
 		ft_puthexa(x);
-		my_struc->length = ft_len_int((int)x, *text);
+		struc->length = ft_len_int((int)x, *text);
 	}
 	else
 		return (NULL);
@@ -191,17 +195,17 @@ const char		*ft_text_search(va_list arg, const char *text, t_print *my_struc)
 	
 }
 
-const char	*ft_text_read(t_print *my_struc, char const *text)
+const char	*ft_text_read(char const *text, t_print *struc)
 {
 	char	*next;
 
 	next = ft_strpercent(text);
 	if (next)
-		my_struc->width = next - text;
+		struc->width = next - text;
 	else
-		my_struc->width = ft_len_str(text);
-	write(1, text, my_struc->width);
-	my_struc->length += my_struc->width;
+		struc->width = ft_len_str(text);
+	write(1, text, struc->width);
+	struc->length += struc->width;
 	while (*text && *text != '%')
 		++text;
 	return (text);
@@ -210,26 +214,35 @@ const char	*ft_text_read(t_print *my_struc, char const *text)
 int	ft_printf(const char *text, ...)
 {
 	va_list	args;
-	t_print	my_struc;
+	t_print	struc;
 
 	va_start(args, text);
-	my_struc.width = 0;
-	my_struc.length = 0;
+	struc.width = 0;
+	struc.length = 0;
 	while (*text)
 	{
 		if (*text == '%')
-			text = ft_text_search(args, text, &my_struc);
-		else
-			text = ft_text_read(&my_struc, text);
-		if (!text)
 		{
-			write(1, "(null)", 6);
-			va_end(args);
-			return (my_struc.length);
+			printf("||1st char antes de ft_text_search '%c'||", *text);
+			text = ft_text_search(text, &struc, args);
 		}
+		else
+		{
+			printf("||1st char antes de ft_text_read '%c'||", *text);
+			text = ft_text_read(text, &struc);
+		}
+		printf("||char después %c||", *text);
+
+		// if (!text)
+		// {
+		// 	write(1, "(null)", 6);
+		// 	va_end(args);
+		// 	return (struc.length);
+		// }
+		++text;
 	}
 	va_end(args);
-	return (my_struc.length);
+	return (struc.length);
 }
 
 //
@@ -254,29 +267,41 @@ int	ft_printf(const char *text, ...)
 int	main(void)
 {
 	//TEST 1 - Solo TEXTO, sin variables
-	printf("\nTEST 1 - Solo TEXTO, sin variables\n");
+	printf("\nTEST 1\n");
+	printf("Solo TEXTO, sin variables\n");
 	int res11 = printf("hola qué tal\n");
 	int res12 = ft_printf("hola qué tal\n");
+	char *restest1 = res11 == res12 ? "OK" : "FAILLLLL";
 	printf("res printf: %i\nres ft_printf: %i\n",res11, res12);
+	printf("TEST 1 - %s\n", restest1);
 
-	//TEST 2 - 1 variable tipo STRING NULL
-	printf("\nTEST 2 - 1 variable tipo STRING NULL\n");
-	int res21 = printf("vamos con un %s\n", NULL);
-	int res22 = ft_printf("vamos con un %s\n", NULL);
-	printf("res printf: %i\nres ft_printf: %i\n",res21, res22);
+	// //TEST 2 - 1 variable tipo STRING NULL
+	// printf("\nTEST 2\n");
+	// printf("Variable tipo STRING NULL\n");
+	// int res21 = printf("vamos con un %s\n", NULL);
+	// int res22 = ft_printf("vamos con un %s\n", NULL);
+	// char *restest2 = res21 == res22 ? "OK" : "FAILLLLL";
+	// printf("res printf: %i\nres ft_printf: %i\n",res21, res22);
+	// printf("TEST 2 - %s\n", restest2);
 
-	//TEST 3 - 1 variable tipo STRING en el medio
-	printf("\nTEST 3 - 1 variable tipo STRING en el medio\n");
-	int res31 = printf("vamos con un %s en el medio\n", "string");
-	int res32 = ft_printf("vamos con un %s en el medio\n", "string");
-	printf("res printf: %i\nres ft_printf: %i\n",res31, res32);
+	// //TEST 3 - 1 variable tipo STRING en el medio
+	// printf("\nTEST 3\n");
+	// printf("1 variable tipo STRING en el medio\n");
+	// int res31 = printf("vamos con un %s en el medio\n", "string");
+	// int res32 = ft_printf("vamos con un %s en el medio\n", "string");
+	// char *restest3 = res31 == res32 ? "OK" : "FAILLLLL";
+	// printf("res printf: %i\nres ft_printf: %i\n",res31, res32);
+	// printf("TEST 3 - %s\n", restest3);
 
 
-	//TEST 4 - 1 variable tipo INTEGER
-	printf("\nTEST 4 - 1 variable tipo INTEGER\n");
-	int res41 = printf("integer: %i\n", 2456345);
-	int res42 = ft_printf("integer: %i\n", 2456345);
-	printf("res printf: %i\nres ft_printf: %i\n",res41, res42);
+	// //TEST 4 - 1 variable tipo INTEGER
+	// printf("\nTEST 4\n");
+	// printf("1 variable tipo INTEGER\n");
+	// int res41 = printf("integer: %i\n", 2456345);
+	// int res42 = ft_printf("integer: %i\n", 2456345);
+	// char *restest4 = res41 == res42 ? "OK" : "FAILLLLL";
+	// printf("res printf: %i\nres ft_printf: %i\n",res41, res42);
+	// printf("TEST 4 - %s\n", restest4);
 	return (0);
 
 }

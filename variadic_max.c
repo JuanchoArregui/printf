@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/03 14:50:49 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:37:45 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(void)
 {
 	int	max_num;
 
-	max_num = max(4, 5, 6, 2, 27);
+	max_num = max(4, 9, 16, 2, 27);
 	printf("Max num is: %d\n\n\n", max_num);
 	return (0);
 }

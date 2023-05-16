@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/05 00:31:57 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/16 16:49:57 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 
 typedef struct s_print
 {
-	int		width;
-	int		length;
+	int		partial;
+	int		total;
 }	t_print;
 void			ft_putchar(char c);
 void			ft_putstring(char *s);
@@ -27,11 +27,10 @@ void			ft_puthexa(unsigned int nb);
 
 unsigned long	ft_len_str(const char *s);
 int				ft_len_int(int nb, char c);
-char			*ft_text_find_percent(const char *s);
-const char		*ft_text_read(char const *text, t_print *struc);
-const char		*ft_text_percent(const char *text, t_print *struc, va_list arg);
+char			*ft_txt_find_pcnt(const char *s);
+const char		*ft_txt_read_until_pcnt(char const *text, t_print *struc);
+char			*ft_txt_do_pcnt(char *text, t_print *struc, va_list arg);
 int				ft_printf(const char *text, ...);
-
 
 void	ft_putchar(char c)
 {
@@ -75,10 +74,12 @@ void	ft_putnumber(int nb)
 
 void	ft_puthexa(unsigned int x)
 {
-	char	*hexa = "0123456789abcdef";
-	int res[100];
-	int i = 0;
+	char	*hexa;
+	int		res[100];
+	int		i;
 
+	hexa = "0123456789abcdef";
+	i = 0;
 	while (x > 16)
 	{
 		res[i] = hexa[x % 16];
@@ -93,7 +94,6 @@ void	ft_puthexa(unsigned int x)
 	}
 }
 
-
 unsigned long	ft_len_str(const char *s)
 {
 	unsigned long	i;
@@ -104,7 +104,7 @@ unsigned long	ft_len_str(const char *s)
 	return (i);
 }
 
-char	*ft_text_find_percent(const char *s)
+char	*ft_txt_find_pcnt(const char *s)
 {
 	while (*s)
 	{
@@ -114,11 +114,16 @@ char	*ft_text_find_percent(const char *s)
 			// printf("\n-----> *s: %c\n", *s);
 			return ((char *)s);
 		}
+printf("\n%c  <----", *s);
+
 		s++;
 	}
-	if (!s)
+
+printf("\n-----> NO EXISTE PORCENTAJE.");
+
+	// if (!s)
 		return ((char *)s);
-	return (NULL);
+	// return (NULL);
 }
 
 int	ft_len_int(int nb, char c)
@@ -137,9 +142,20 @@ int	ft_len_int(int nb, char c)
 	else
 	{
 		neg = 0;
-		number = -nb;
+		number = nb;
 	}
-	if (c == 'd')
+
+	i = 0;
+	if (c == 'i')
+	{
+		while (number)
+		{
+			number /= 10;
+			i++;
+		}
+		return (i + neg);
+	}
+	else if (c == 'd')
 	{
 		while (number)
 		{
@@ -160,55 +176,97 @@ int	ft_len_int(int nb, char c)
 	return (0);
 }
 
-const char		*ft_text_percent(const char *text, t_print *struc, va_list arg)
+char	*ft_txt_do_pcnt(char *text, t_print *struc, va_list arg)
 {
-	if (*text == 'd')
+		printf("\n-------------ENTRANDO");
+		printf("\n-char entrada: %c", *text);
+			printf("\n-string pendiente entrada: %s", (char *)text);
+			printf("\n-FT_TXT_DO_Pcnt");
+	
+	if (*text == 'i')
+	{
+		int nb = va_arg(arg, int);
+		// int kk = ft_len_int(nb, *text);
+
+		// printf("\n-HAY QUE IMPRIMIR UN ENTERO:");
+		// printf("\n-i = %i", nb);
+		// printf("\"");
+		ft_putnumber(nb);
+		// printf("\"");
+		// printf("\n-kk = %i", kk);
+
+		struc->partial = ft_len_int(nb, *text);
+
+	}
+	else if (*text == 'd')
 	{
 		int d = va_arg(arg, int);
 		ft_putnumber(d);
-		struc->length = ft_len_int(d, *text);
+		struc->partial = ft_len_int(d, *text);
 	}
 	else if (*text == 's')
 	{
+		printf("\nimprimiendo un STRING");
 		char *s = va_arg(arg, char *);
 		if (!s)
 		{
+			printf("\nel STRING es NULOoooooooooooo");
+			
+			
 			write(1, "(null)", 6);
-			struc->length += 6;
+			struc->partial = 6;
 		}
 		else
 		{
 			ft_putstring(s);
-			struc->length = ft_len_str(s);
+			struc->partial = ft_len_str(s);
 		}
 	}
 	else if (*text == 'x')
 	{
 		unsigned int x = va_arg(arg, unsigned int);
 		ft_puthexa(x);
-		struc->length = ft_len_int((int)x, *text);
+		struc->partial = ft_len_int((int)x, *text);
 	}
 	else
+	{
+		struc->partial = 0;
 		return (NULL);
-	text++;
-	return (text);
+	}
+	struc->total += struc->partial;
+	return (++text);
 	
 }
 
-const char	*ft_text_read(char const *text, t_print *struc)
+const char	*ft_txt_read_until_pcnt(char const *text, t_print *struc)
 {
+	int		text_length;
 	char	*next;
+	int		next_length;
 
-	next = ft_text_find_percent(text);
-	if (next)
-		struc->width = next - text;
-	else
-		struc->width = ft_len_str(text);
-	write(1, text, struc->width);
-	struc->length += struc->width;
-	while (*text && *text != '%')
-		++text;
-	return (text);
+	text_length = ft_len_str(text);
+	next = ft_txt_find_pcnt(text);
+	next_length = ft_len_str(next);
+	printf("\n-text_length: %i", text_length);
+	printf("\n-next_length: %i", next_length);
+	struc->partial = text_length - next_length;
+	// if (next)
+	// 	struc->partial = next - text;
+	// else
+	// 	struc->partial = ft_len_str(text);
+
+write(1, "\"", 1);
+	write(1, text, struc->partial);
+write(1, "\"", 1);
+
+	struc->total += struc->partial;
+	// while (*text && *text != '%')
+	// 	++text;
+
+	// printf("\n---->string NEXT: %s", (char *)next);
+	// printf("\n---->string TEXT: %s", (char *)text);
+	
+	return (next);
 }
 
 int	ft_printf(const char *text, ...)
@@ -219,37 +277,46 @@ int	ft_printf(const char *text, ...)
 
 	i = 0;
 	va_start(args, text);
-	struc.width = 0;
-	struc.length = 0;
+	struc.partial = 0;
+	struc.total = 0;
+	printf("\nstruc.partial: %i", struc.partial);
+	printf("\nstruc.total: %i", struc.total);
+
+
 	while (*text)
 	{
-		printf("\n-ITERACION: %i", i);
-		printf("\n-char entrada: %c", *text);
-		printf("\n-string pendiente entrada: %s", (char *)text);
+		printf("\n\n-ITERACION: %i", i);
 		if (*text == '%')
 		{
-			// printf("||1st char antes de ft_text_percent '%c'||", *text);
-			text = ft_text_percent(text, &struc, args);
+			printf("\n-FT_TXT_DO_Pcnt");
+			text = ft_txt_do_pcnt(++text, &struc, args);
 		}
 		else
 		{
-			// printf("||1st char antes de ft_text_read '%c'||", *text);
-			text = ft_text_read(text, &struc);
+			printf("\n-FT_TEXT_READ");
+			printf("\n-char entrada: %c", *text);
+			printf("\n-string pendiente entrada: %s", (char *)text);
+			printf("\n-FT_TEXT_READ");
+
+			text = ft_txt_read_until_pcnt(text, &struc);
 		}
 		printf("\n-char salida: %c", *text);
 		printf("\n-string pendiente salida: %s", (char *)text);
+		printf("\n-struc.partial: %i", struc.partial);
+		printf("\n-struc.total: %i", struc.total);
+
 
 		// if (!text)
 		// {
 		// 	write(1, "(null)", 6);
 		// 	va_end(args);
-		// 	return (struc.length);
+		// 	return (struc.total);
 		// }
 		++i;
-		++text;
+		// ++text;
 	}
 	va_end(args);
-	return (struc.length);
+	return (struc.total);
 }
 
 //
@@ -273,32 +340,31 @@ int	ft_printf(const char *text, ...)
 
 int	main(void)
 {
-	printf("\nTEST 1");
-	
-	int	res11 = printf("\nhola qué tal %i, %i, %i... probando\n", 1, 2, 3);
-	int	res12 = ft_printf("\nhola qué tal %i, %i, %i... probando\n", 1, 2, 3);
-	char *restest1;
-	if (res11 == res12)
-		restest1 = "OK";
-	else
-		restest1 = "FAILLLLL";
-	printf("\nres printf: %i\nres ft_printf: %i",res11, res12);
-	printf("\nTEST 1 --> %s", restest1);
+	// printf("\nTEST 1");
+	// int	res11 = printf("\nhola qué tal %i, %i, %i... probando", -111, 222, -333);
+	// int	res12 = ft_printf("\nhola qué tal %i, %i, %i... probando", -111, 222, -333);
 
-	// //TEST 2 - 1 variable tipo STRING NULL
-	// printf("\nTEST 2\n");
-	// printf("Variable tipo STRING NULL\n");
-	// int res21 = printf("vamos con un %s\n", NULL);
-	// int res22 = ft_printf("vamos con un %s\n", NULL);
-	// char *restest2 = res21 == res22 ? "OK" : "FAILLLLL";
-	// printf("res printf: %i\nres ft_printf: %i\n",res21, res22);
-	// printf("TEST 2 - %s\n", restest2);
+	// char *restest1;
+	// if (res11 == res12)
+	// 	restest1 = "OK";
+	// else
+	// 	restest1 = "FAILLLLL";
+	// printf("\nres printf: %i\nres ft_printf: %i",res11, res12);
+	// printf("\nTEST 1 --> %s", restest1);
 
-	// //TEST 3 - 1 variable tipo STRING en el medio
-	// printf("\nTEST 3\n");
-	// printf("1 variable tipo STRING en el medio\n");
-	// int res31 = printf("vamos con un %s en el medio\n", "string");
-	// int res32 = ft_printf("vamos con un %s en el medio\n", "string");
+
+
+	printf("\nTEST 2 - Variable tipo STRING NULL");
+	int res21 = printf("\nvamos con un string nulo --> %s", NULL);
+	int res22 = ft_printf("\nvamos con un string nulo --> %s", NULL);
+	char *restest2 = res21 == res22 ? "OK" : "FAILLLLL";
+	printf("res printf: %i\nres ft_printf: %i\n",res21, res22);
+	printf("TEST 2 - %s\n", restest2);
+
+
+	// printf("\nTEST 3 - variable tipo STRING en el medio\n");
+	// int res31 = printf("\nvamos con un %s en el medio\n", "\"string\"");
+	// int res32 = ft_printf("\nvamos con un %s en el medio\n", "\"string\"");
 	// char *restest3 = res31 == res32 ? "OK" : "FAILLLLL";
 	// printf("res printf: %i\nres ft_printf: %i\n",res31, res32);
 	// printf("TEST 3 - %s\n", restest3);

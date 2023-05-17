@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/17 12:14:16 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/17 13:34:41 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,21 +172,13 @@ const char	*ft_txt_do_pcnt(const char *text, t_print *struc, va_list arg)
 		write(1, "%", 1);
 		struc->partial = 1;
 	}
-	else if (*text == 'i')
+	else if (*text == 'c')
 	{
-		int	nb;
+		char	c;
 		
-		nb = va_arg(arg, int);
-		ft_putnumber(nb);
-		struc->partial = ft_len_int(nb, *text);
-	}
-	else if (*text == 'd')
-	{
-		int d;
-		
-		d = va_arg(arg, int);
-		ft_putnumber(d);
-		struc->partial = ft_len_int(d, *text);
+		c = va_arg(arg, int);
+		ft_putchar(c);
+		struc->partial = 1;
 	}
 	else if (*text == 's')
 	{
@@ -203,6 +195,30 @@ const char	*ft_txt_do_pcnt(const char *text, t_print *struc, va_list arg)
 			ft_putstring(s);
 			struc->partial = ft_len_str(s);
 		}
+	}
+	else if (*text == 'p')
+	{
+		char	*p;
+
+		p = va_arg(arg, char *);
+		ft_puthexa(p);
+		struc->partial = ft_len_str(p);
+	}
+	else if (*text == 'i')
+	{
+		int	nb;
+		
+		nb = va_arg(arg, int);
+		ft_putnumber(nb);
+		struc->partial = ft_len_int(nb, *text);
+	}
+	else if (*text == 'd')
+	{
+		int d;
+		
+		d = va_arg(arg, int);
+		ft_putnumber(d);
+		struc->partial = ft_len_int(d, *text);
 	}
 	else if (*text == 'x')
 	{
@@ -302,10 +318,11 @@ int	main(void)
 	printf("\nres printf: %i\nres ft_printf: %i",res31, res32);
 	printf("\nTEST 3 - %s", restest3);
 
-
-	printf("\nTEST 4 - %% y decimal");
-	int res41 = printf("\nimprimiendo un símbolo de porcentaje \"%%\", un carácter \"%c\"y un número dcimal", "$");
-	int res42 = ft_printf("\nimprimiendo un símbolo de porcentaje \"%%\", un carácter \"%c\"y un número dcimal", "$");
+	const char *string = "1$..!";
+	++string;
+	printf("\nTEST 4 - %%, caracter y puntero");
+	int res41 = printf("\nimprimiendo un símbolo de porcentaje \"%%\", un carácter que debe ser un dolar \"%c\"", *string);
+	int res42 = ft_printf("\nimprimiendo un símbolo de porcentaje \"%%\", un carácter que debe ser un dolar \"%c\"", *string);
 	char *restest4 = res41 == res42 ? "OK" : "FAILLLLL";
 	printf("\nres printf: %i\nres ft_printf: %i",res41, res42);
 	printf("\nTEST 4 - %s", restest4);

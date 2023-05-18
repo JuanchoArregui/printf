@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/17 13:34:41 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/18 13:29:42 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,20 @@
 
 typedef struct s_print
 {
-	int		partial;
-	int		total;
+	int	partial;
+	int	total;
 }	t_print;
+typedef enum boolean
+{
+	false,
+	true
+}	t_bool;
+
 void			ft_putchar(char c);
 void			ft_putstring(char *s);
 void			ft_putnumber(int nb);
-void			ft_puthexa(unsigned int nb);
-
+int				ft_puthexa(unsigned long int nb, t_bool upper);
+int				ft_puthexa_marker(void);
 unsigned long	ft_len_str(const char *s);
 int				ft_len_int(int nb, char c);
 const char		*ft_txt_find_pcnt(const char *s);
@@ -72,26 +78,38 @@ void	ft_putnumber(int nb)
 	}
 }
 
-void	ft_puthexa(unsigned int x)
+int	ft_puthexa(unsigned long int nb, t_bool upper)
 {
 	char	*hexa;
 	int		res[100];
 	int		i;
+	int		partial;
 
-	hexa = "0123456789abcdef";
+	if (upper)
+		hexa = "0123456789ABCDEF";
+	else
+		hexa = "0123456789abcdef";
 	i = 0;
-	while (x > 16)
+	while (nb > 16)
 	{
-		res[i] = hexa[x % 16];
-		x /= 16;
+		res[i] = hexa[nb % 16];
+		nb /= 16;
 		i++;
 	}
-	res[i] = hexa[x];
+	res[i] = hexa[nb];
+	partial = i + 1;
 	while (i >= 0)
 	{
 		ft_putchar(res[i]);
 		i--;
 	}
+	return (partial);
+}
+
+int	ft_puthexa_marker(void)
+{
+	write(1, "0x", 2);
+	return (2);
 }
 
 unsigned long	ft_len_str(const char *s)
@@ -133,7 +151,6 @@ int	ft_len_int(int nb, char c)
 		neg = 0;
 		number = nb;
 	}
-
 	i = 0;
 	if (c == 'i')
 	{
@@ -167,6 +184,7 @@ int	ft_len_int(int nb, char c)
 
 const char	*ft_txt_do_pcnt(const char *text, t_print *struc, va_list arg)
 {
+	struc->partial = 0;
 	if (*text == '%')
 	{
 		write(1, "%", 1);
@@ -198,11 +216,25 @@ const char	*ft_txt_do_pcnt(const char *text, t_print *struc, va_list arg)
 	}
 	else if (*text == 'p')
 	{
-		char	*p;
+		unsigned long int	ptr;
 
-		p = va_arg(arg, char *);
-		ft_puthexa(p);
-		struc->partial = ft_len_str(p);
+		struc->partial = ft_puthexa_marker();
+		ptr = va_arg(arg, unsigned long int);
+		struc->partial += ft_puthexa(ptr, false);
+	}
+	else if (*text == 'x')
+	{
+		unsigned int x;
+		
+		x = va_arg(arg, unsigned int);
+		struc->partial = ft_puthexa(x, false);
+	}
+	else if (*text == 'X')
+	{
+		unsigned int x;
+		
+		x = va_arg(arg, unsigned int);
+		struc->partial = ft_puthexa(x, true);
 	}
 	else if (*text == 'i')
 	{
@@ -220,14 +252,6 @@ const char	*ft_txt_do_pcnt(const char *text, t_print *struc, va_list arg)
 		ft_putnumber(d);
 		struc->partial = ft_len_int(d, *text);
 	}
-	else if (*text == 'x')
-	{
-		unsigned int x;
-		
-		x = va_arg(arg, unsigned int);
-		ft_puthexa(x);
-		struc->partial = ft_len_int((int)x, *text);
-	}
 	else
 	{
 		struc->partial = 0;
@@ -243,6 +267,7 @@ const char	*ft_txt_read_until_pcnt(const char *text, t_print *struc)
 	const char	*next;
 	int			next_length;
 
+	struc->partial = 0;
 	text_length = ft_len_str(text);
 	next = ft_txt_find_pcnt(text);
 	next_length = ft_len_str(next);
@@ -277,7 +302,12 @@ int	ft_printf(const char *text, ...)
 //TESTING
 //
 //
+// %% 	print a percent sign
+// %c 	character
+// %s 	a string of characters
 // %p 	pointer hexadecimal address
+
+
 
 // %d 	decimal (integer) number (base 10)
 // %i 	integer (base 10)
@@ -287,9 +317,6 @@ int	ft_printf(const char *text, ...)
 // %X 	number in hexadecimal (base 16)
 
 
-// %c 	character
-// %s 	a string of characters
-// %% 	print a percent sign
 
 
 int	main(void)
@@ -321,14 +348,19 @@ int	main(void)
 	const char *string = "1$..!";
 	++string;
 	printf("\nTEST 4 - %%, caracter y puntero");
-	int res41 = printf("\nimprimiendo un símbolo de porcentaje \"%%\", un carácter que debe ser un dolar \"%c\"", *string);
-	int res42 = ft_printf("\nimprimiendo un símbolo de porcentaje \"%%\", un carácter que debe ser un dolar \"%c\"", *string);
+	int res41 =    printf("\nimprimiendo un símbolo de porcentaje \"%%\", un carácter que debe ser un dolar \"%c\" y la dirección del puntero: %p", *string, &string);
+	int res42 = ft_printf("\nimprimiendo un símbolo de porcentaje \"%%\", un carácter que debe ser un dolar \"%c\" y la dirección del puntero: %p", *string, &string);
 	char *restest4 = res41 == res42 ? "OK" : "FAILLLLL";
 	printf("\nres printf: %i\nres ft_printf: %i",res41, res42);
 	printf("\nTEST 4 - %s", restest4);
 
 
-
+	printf("\n\nTEST 5 - variables HEXA\n");
+	int res51 =    printf("\nhexa del numero '34467797' en minúsculas: %x, y en mayúsculas: %X", 34467797, 34467797);
+	int res52 = ft_printf("\nhexa del numero '34467797' en minúsculas: %x, y en mayúsculas: %X", 34467797, 34467797);
+	char *restest5 = res51 == res52 ? "OK" : "FAILLLLL";
+	printf("\nres printf: %i\nres ft_printf: %i",res51, res52);
+	printf("\nTEST 5 - %s", restest5);
 	return (0);
 
 }

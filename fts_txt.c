@@ -6,11 +6,41 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:21:11 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/22 13:44:48 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:03:24 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+int	*ft_strcpy(const char *src, char *dst, size_t dst_start)
+{
+	size_t	i;
+
+	i = 0;
+	while (src[i] != '\0' && dst_start + i < 4096)
+	{
+		dst[dst_start + i] = src[i];
+		++i;
+	}
+	dst[dst_start + i] = '\0';
+	return (dst_start + i);
+}
+
+int ft_strcmp(const char *str1, const char *str2)
+{
+	size_t	i;
+
+	i = 0;
+	while (str1[i] != '\0')
+	{
+		if (str1[i] != str2[i])
+			return (0);
+		++i;
+	}
+	if (str1[i] == '\0' && str2[i] == '\0')
+		return (1);
+	return (0);
+}
 
 const char	*ft_txt_find_pcnt(const char *s)
 {
@@ -32,7 +62,7 @@ const char	*ft_txt_do_pcnt(const char *text, t_print *struc, va_list arg)
 	else if (*text == 's')
 		struc->partial = ft_put_string(va_arg(arg, char *));
 	else if (*text == 'p')
-		struc->partial = ft_put_pointer(va_arg(arg, unsigned long int));
+		struc->partial = ft_put_pointer(va_arg(arg, size_t));
 	else if (*text == 'x')
 		struc->partial = ft_put_num_base(va_arg(arg, unsigned int), 'x');
 	else if (*text == 'X')

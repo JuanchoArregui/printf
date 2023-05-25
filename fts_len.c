@@ -6,15 +6,15 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:28:40 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/22 11:47:07 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:00:22 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-unsigned long	ft_len_str(const char *s)
+size_t	ft_len_str(const char *s)
 {
-	unsigned long	i;
+	size_t	i;
 
 	i = 0;
 	while (s[i])

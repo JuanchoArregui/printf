@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/22 10:39:54 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:13:05 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_get_basechars(char base_type)
 	return (NULL);
 }
 
-unsigned long int	ft_get_base(char base_type)
+size_t	ft_get_base(char base_type)
 {
 	if (base_type == 'X')
 		return (16);
@@ -34,7 +34,7 @@ unsigned long int	ft_get_base(char base_type)
 	return (0);
 }
 
-int	ft_put_pointer(unsigned long int ptr)
+int	ft_put_pointer(size_t ptr)
 {
 	int	partial;
 
@@ -43,13 +43,13 @@ int	ft_put_pointer(unsigned long int ptr)
 	return (partial + 2);
 }
 
-int	ft_put_num_base(unsigned long int nb, char base_type)
+int	ft_put_num_base(size_t nb, char base_type)
 {
-	char				*basechars;
-	unsigned long int	base;
-	int					res[100];
-	int					i;
-	int					partial;
+	char	*basechars;
+	size_t	base;
+	int		res[100];
+	int		i;
+	int		partial;
 
 	basechars = ft_get_basechars(base_type);
 	base = ft_get_base(base_type);
@@ -70,7 +70,7 @@ int	ft_put_num_base(unsigned long int nb, char base_type)
 	return (partial);
 }
 
-// int	ft_puthexa(unsigned long int nb, int upper)
+// int	ft_puthexa(size_t nb, int upper)
 // {
 // 	char	*hexa;
 // 	int		res[100];

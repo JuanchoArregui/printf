@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/22 13:47:44 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/05/25 14:29:39 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,51 +29,61 @@
 // -
 // -
 
-
-
-
-
-
 #include "ft_printf.h"
 #include <stdio.h>
+#include <stdarg.h>
 
-typedef struct s_test
+typedef struct s_test_general
 {
 	int	counter;
 	int	title;
-	int	ft_printf;
-	int	printf;
+}	t_test_general;
+
+typedef struct s_test
+{
+	char	out_pf[4096];
+	char	out_ft_pf[4096];
+	int		ret_pf;
+	int		ret_ft_pf;
+	char	*result;
 }	t_test;
 
 void	ft_test(const char *text, ...)
 {
-	int		res;
-	int		res_ft;
-	char	*result;
 	va_list	args;
+	t_test	test;
 
 	va_start(args, text);
-	res = printf(text, args);
-	res_ft = ft_printf(text, args);
-	if (res == res_ft)
-		result = "OK";
+	test.ret_pf = vsnprintf(test.out_pf, sizeof(test.out_pf), text, args);
+	test.out_ft_pf = s_ft_printf(text, args);
+	test.ret_ft_pf = ft_len_str(test.out_ft_pf);
+	va_end(args);
+	if (ft_strcmp(test.out_pf, test.out_ft_pf) == 1)
+		test.result = "KO";
+	if (test.ret_ft_pf != test.ret_pf)
+		test.result = "KO";
+	if (test.result == "KO")
+		test.result = "\033[1;31m [ FAILLLLL ] \033[1;0m";
 	else
-		result = "FAILLLLL";
-	printf("\nres printf: %i\nres ft_printf: %i", res, res_ft);
-	printf("\nTEST 1 --> %s", result);
+		test.result = "\033[1;32m [ OK ] \033[1;0m";
+	printf("\n%s", test.out_pf);
+	printf("\n%s", test.out_ft_pf);
+	printf("\n%i", test.ret_pf);
+	printf("\n%i", test.ret_ft_pf);
+	printf("\nTEST result --> %s", test.result);
 	va_end(args);
 }
 
-void	ft_test_print_title(t_test *struc)
+void	ft_test_print_title(t_test_general *struc)
 {
-	printf("\n\nTEST %i", struc->counter);
+	printf("\n\n\033[1;36mTEST %i\033[1;0m", struc->counter);
 	struc->counter += 1;
 }
 
 
 int	main(void)
 {
-	t_test	struc;
+	t_test_general	struc;
 
 	struc.counter = 0;
 	ft_test_print_title(&struc);

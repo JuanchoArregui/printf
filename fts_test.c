@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/25 14:29:39 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/06/02 13:50:02 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,19 @@
 // -
 // -
 // NOTA, COSAS A CONTINUAR:
+//
+// lo dejo en quiero que mi nueva función s_ft_printf, en vez de ir imprimiendo caracteres, los vaya guardando en la estructura. En principio hay dos opciones:
+// -a) declar un array con un tamaño fijo char[4096] e ir moviéndome y controlando la posición y no pasarme de esos 4095 char + el último para el 0 
+// esta es la opción en la que estoy y hay que mirar bien el ft_strcpy que tengo en fts_text y en kk.c. Mirar y comparar 
+
+// -b) la otra opción es declar un puntero y en esa posición guadar esapcio con un malloc. y luego pod´riamos movernos con string++ y ver como controlamos no pasarnos del espacio asignado.
+
+
 // - REvisar función	ft_len_int(int nb, char c) que ahora no usamos, aunque habría que mirar el tema de los negativos 
 // y probablemente borrarlo o ver código tb con ft_len_str
-// - Continuar revisando la función fT_test para que imprima bien los test.
+
+
+// - Continuar revisando la función fT_test para que imprima bien los test. de momento ya parece que me guarda OK la salida de printf
 // --
 // -
 // -
@@ -55,7 +65,14 @@ void	ft_test(const char *text, ...)
 
 	va_start(args, text);
 	test.ret_pf = vsnprintf(test.out_pf, sizeof(test.out_pf), text, args);
-	test.out_ft_pf = s_ft_printf(text, args);
+
+	
+
+	//Revisar esta parte y ver si asi tiene sentido
+	//si hay que modificar la función s_ft_printf
+	//Y si sería mejor hacerlo con un puntero, y reservarle memoria con malloc
+	ft_strlcpy(test.out_ft_pf, s_ft_printf(text, args), size_t size);
+
 	test.ret_ft_pf = ft_len_str(test.out_ft_pf);
 	va_end(args);
 	if (ft_strcmp(test.out_pf, test.out_ft_pf) == 1)

@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:28:40 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/25 14:00:22 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/06/29 22:36:19 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,3 +70,4 @@ int	ft_len_int(int nb, char c)
 	}
 	return (0);
 }
+

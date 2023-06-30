@@ -1,40 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fts_put_strs.c                                     :+:      :+:    :+:   */
+/*   fts_save_strs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/06/29 20:55:01 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/06/30 01:02:51 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_put_char(char c)
+void	ft_save_char(char c, t_print *struc)
 {
-	write(1, &c, 1);
-	return (1);
+	struc->print[struc->length] = c;
+	struc->length += 1;
+
+	printf("\ft_save_char -->char: %c", c);
+	printf("\ft_save_char --> struc->print: %s", struc->print);
+	printf("\ft_save_char --> struc->length: %i", struc->length);
 }
 
-int	ft_put_string(char *s)
+void	ft_save_string(char *s, t_print *struc)
 {
 	int	i;
+	int	position;
 
 	if (!s)
 	{
-		write(1, "(null)", 6);
-		return (6);
+		ft_save_string("(null)", struc);
 	}
 	else
 	{
 		i = 0;
+		position = struc->length;
 		while (s[i])
 		{
-			ft_put_char(s[i]);
+			struc->print[position + i] = s[i];
 			i++;
 		}
-		return (i);
+		struc->length += i;
 	}
 }

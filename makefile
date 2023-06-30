@@ -6,7 +6,7 @@
 #    By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:58:00 by jarregui          #+#    #+#              #
-#    Updated: 2023/05/22 11:53:17 by jarregui         ###   ########.fr        #
+#    Updated: 2023/06/29 22:56:07 by jarregui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,12 @@ RM			=	/bin/rm -f
 EXEC_NAME	=	a.out
 
 SRCS		=	ft_printf.c \
-				fts_len.c \
-				fts_put_nums.c \
+				fts_handling_main_txt.c \
+				fts_save_nums.c \
+				fts_save_strs.c \
 				fts_put_strs.c \
-				fts_txt.c
+				fts_len.c \
+
 
 SRCS_BONUS	=	fts_bonus.c
 

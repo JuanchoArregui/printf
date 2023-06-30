@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fts_put_nums.c                                     :+:      :+:    :+:   */
+/*   fts_save_nums.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/05/25 13:13:05 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/06/30 00:32:08 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,34 +23,39 @@ char	*ft_get_basechars(char base_type)
 	return (NULL);
 }
 
-size_t	ft_get_base(char base_type)
+int	ft_get_base(char base_type)
 {
 	if (base_type == 'X')
 		return (16);
 	else if (base_type == 'x')
 		return (16);
-	else if (base_type == 'd')
+	else if (base_type == 'd' || base_type == 'i' )
 		return (10);
 	return (0);
 }
 
-int	ft_put_pointer(size_t ptr)
+void	ft_save_pointer(size_t ptr, t_print *struc)
 {
-	int	partial;
-
-	write(1, "0x", 2);
-	partial = ft_put_num_base(ptr, 'x');
-	return (partial + 2);
+	ft_save_string("0x", struc);
+	ft_save_num_base(ptr, 'x', struc);
 }
 
-int	ft_put_num_base(size_t nb, char base_type)
+void	ft_save_num_base(size_t nb, char base_type, t_print *struc)
 {
+	
+	printf("\nft_save_num_base --> base_type: %c", base_type);
+	printf("\nft_save_num_base --> base_type: %i", struc->length);
+
 	char	*basechars;
 	size_t	base;
 	int		res[100];
 	int		i;
-	int		partial;
 
+	if (nb < 0)
+	{
+		ft_save_char('-', struc);
+		nb = -1 * nb;
+	}
 	basechars = ft_get_basechars(base_type);
 	base = ft_get_base(base_type);
 	i = 0;
@@ -61,14 +66,17 @@ int	ft_put_num_base(size_t nb, char base_type)
 		i++;
 	}
 	res[i] = basechars[nb];
-	partial = i + 1;
 	while (i >= 0)
 	{
-		ft_put_char(res[i]);
+		ft_save_char(res[i], struc);
 		i--;
 	}
-	return (partial);
 }
+
+
+
+
+
 
 // int	ft_puthexa(size_t nb, int upper)
 // {

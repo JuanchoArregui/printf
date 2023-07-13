@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/06/30 01:57:45 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/07/13 15:34:42 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int			ft_put_string(char *s);
 
 
 /* ---------- fts_test.c Testing functions */
-void		ft_test(const char *text, ...)
+void		ft_test(const char *text, ...);
 int			main(void);
 
 #endif

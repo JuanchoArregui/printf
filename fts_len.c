@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   fts_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:28:40 by jarregui          #+#    #+#             */
-/*   Updated: 2023/06/29 22:36:19 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:41:16 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-size_t	ft_len_str(const char *s)
+int	ft_len_str(const char *s)
 {
 	size_t	i;
 

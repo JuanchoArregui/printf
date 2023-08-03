@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fts_test.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/06/30 02:00:30 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:27:39 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 // -
 
 #include "ft_printf.h"
-#include <stdio.h>
+#include <stdio.h>//esto es para poder usar el printf real
+#include <limits.h>//esto es para saber los limites de int en nuestro sistema
 
 // CONTINUAR AQUIIII
 // vsprintf paraece que guarda ok el sring en el buffer. Ver si lo dejamos así o si usamos un malloc o una estructura.
@@ -38,25 +39,49 @@
 void	ft_test(const char *text, ...)
 {
 	va_list	args;
+	int	length;
 	t_print	struc;
 	// char	*ret_pf;
 	// char	*ret_ft_pf;
 
 	struc.print = (char *)malloc(MAX_LENGTH * sizeof(char));
 	struc.print[0] = '\0';
-	struc.length = 0;
 	va_start(args, text);
 
 	char buffer[MAX_LENGTH];  // Buffer para almacenar el string formateado
-	printf("\nEXPERIMENTO::::");
-	printf("\n");
 	vsprintf(buffer, text, args);
-	printf("%s", buffer);
+	length = ft_len_str(buffer);
+	printf("\nBuffer: %s", buffer);
+	printf("\nBuffer length: %i", length);
 
-	// vsnprintf(ret_pf, sizeof(ret_pf), text, args);
-	// ret_ft_pf = ft_vsnprintf(text, args, struc);
+
+
 	va_end(args);
 	free(struc.print);
+
+}
+
+
+void	test_00(void)
+{
+ 	char character = 'k';
+    char string[] = "Esto es un string";
+
+	printf("\n\nTEST 00 - impreme un CARACTER y un STRING");
+	ft_printf("\nEl carácter es: \"%c\" y el string es: \"%s\"", character, string);
+	ft_test("\nEl carácter es: \"%c\" y el string es: \"%s\"", character, string);
+}
+
+void	test_01(void)
+{
+ 	int min = -2147483648;
+ 	int max = 2147483647;
+	int length;
+
+	printf("\n\nTEST 01 - variables tipo INT min y max");
+	ft_test("\nEl entéro mínimo es: \"%i\" y el máximo es: \"%i\"", min, max);
+	length = printf("\nEl entéro mínimo es: \"%u\" y el máximo es: \"%u\"", min, max);
+	printf("\nprintf length: %i", length);
 
 }
 
@@ -121,28 +146,10 @@ void	ft_test(const char *text, ...)
 
 int	main(void)
 {
-	// t_test_general	struc;
-
-	// struc.counter = 0;
-	// ft_test_print_title(&struc);
-	// ft_test("\n%i, %i, %i... probando", 1, 1, 3);
-
-	// ft_test_print_title(&struc);
-	// ft_test("\nnum negativo: %i", -111);
-
-	
-
-	// printf("\n");
-	// char buffer[MAX_LENGTH];  // Buffer para almacenar el string formateado
-    int numero = 42;
-    float flotante = 3.14;
-	ft_test("El número es: %d y el flotante es: %.2f", numero, flotante);
-
-	// printf("\n");
-    // printf("El número es: %d y el flotante es: %.2f", numero, flotante);
-	// printf("\n");
-    // printf("%s", buffer);
-	// printf("\n");
+	printf("El valor máximo de int es: %d\n", INT_MAX);
+    printf("El valor mínimo de int es: %d\n", INT_MIN);
+	test_00();
+	test_01();
 
 
 	
@@ -210,3 +217,4 @@ int	main(void)
 	return (0);
 
 }
+

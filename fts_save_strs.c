@@ -3,26 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   fts_save_strs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/06/30 01:02:51 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:47:03 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_save_char(char c, t_print *struc)
+void	ft_save_char(char c, t_print **struc)
 {
-	struc->print[struc->length] = c;
-	struc->length += 1;
-
-	printf("\ft_save_char -->char: %c", c);
-	printf("\ft_save_char --> struc->print: %s", struc->print);
-	printf("\ft_save_char --> struc->length: %i", struc->length);
+	(*struc)->print[(*struc)->length] = c;
+	(*struc)->length += 1;
 }
 
-void	ft_save_string(char *s, t_print *struc)
+void	ft_save_string(char *s, t_print **struc)
 {
 	int	i;
 	int	position;
@@ -34,12 +30,12 @@ void	ft_save_string(char *s, t_print *struc)
 	else
 	{
 		i = 0;
-		position = struc->length;
+		position = (*struc)->length;
 		while (s[i])
 		{
-			struc->print[position + i] = s[i];
+			(*struc)->print[position + i] = s[i];
 			i++;
 		}
-		struc->length += i;
+		(*struc)->length += i;
 	}
 }

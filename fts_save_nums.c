@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fts_save_nums.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/06/30 00:32:08 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/03 13:56:07 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,22 @@ int	ft_get_base(char base_type)
 	return (0);
 }
 
-void	ft_save_pointer(size_t ptr, t_print *struc)
+void	ft_save_pointer(size_t ptr, t_print **struc)
 {
 	ft_save_string("0x", struc);
 	ft_save_num_base(ptr, 'x', struc);
 }
 
-void	ft_save_num_base(size_t nb, char base_type, t_print *struc)
+void	ft_save_num_base(long int nb, char base_type, t_print **struc)
 {
 	
 	printf("\nft_save_num_base --> base_type: %c", base_type);
-	printf("\nft_save_num_base --> base_type: %i", struc->length);
+	printf("\nft_save_num_base --> base_type: %i", (*struc)->length);
 
-	char	*basechars;
-	size_t	base;
-	int		res[100];
-	int		i;
+	char		*basechars;
+	long int	base;
+	int			res[100];
+	int			i;
 
 	if (nb < 0)
 	{

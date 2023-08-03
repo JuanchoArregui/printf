@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/06/30 01:55:37 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:48:32 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,10 @@
 int	ft_printf(const char *text, ...)
 {
 	va_list	args;
-	t_print	struc;
+	t_print	*struc;
 
-	struc.print = (char *)malloc(MAX_LENGTH * sizeof(char));
-	struc.print[0] = '\0';
-	struc.length = 0;
+	struc = (t_print *)malloc(sizeof(t_print));
+	malloc_struc_variables(&struc);
 	va_start(args, text);
 	while (*text)
 	{
@@ -29,19 +28,25 @@ int	ft_printf(const char *text, ...)
 			text = ft_txt_read_until_pcnt(text, &struc);
 	}
 	va_end(args);
-	ft_put_string(struc.print);
-	free(struc.print);
-	return (struc.length);
+	ft_put_string(struc->print);
+	free_struc(&struc);
+	return (struc->length);
 }
 
-char	*ft_vsnprintf(t_print *struc, const char *text, va_list args)
+
+void malloc_struc_variables(t_print **struc)
 {
-	while (*text)
-	{
-		if (*text == '%')
-			text = ft_txt_handle_pcnt(++text, &struc, args);
-		else
-			text = ft_txt_read_until_pcnt(text, &struc);
-	}
-	return (struc->print);
+	(*struc)->print = (char *)malloc(MAX_LENGTH * sizeof(char));
+	(*struc)->print[0] = '\0';
+	(*struc)->real = (char *)malloc(MAX_LENGTH * sizeof(char));
+	(*struc)->real[0] = '\0';
 }
+
+void free_struc(t_print **struc)
+{
+	free((*struc)->print);
+	free((*struc)->real);
+	free((*struc));
+}
+
+

@@ -6,126 +6,79 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/03 17:27:39 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/04 00:28:35 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-
-
-// - Continuar revisando la función fT_test para que imprima bien los test. de momento ya parece que me guarda OK la salida de printf
-// --
-// -
-// -
-// -
-// --
-// -
-// -
-
 #include "ft_printf.h"
 #include <stdio.h>//esto es para poder usar el printf real
-#include <limits.h>//esto es para saber los limites de int en nuestro sistema
 
-// CONTINUAR AQUIIII
-// vsprintf paraece que guarda ok el sring en el buffer. Ver si lo dejamos así o si usamos un malloc o una estructura.
-// Terminar de verificar el vsprintf y comenzar a hacer los test por aquí.
-
-// Nota: ver tb que pasa con los números negativos que parece que me da segmentation fault
-
-// Y ver enunciado los tipos que nos piden
-
-
-
-void	ft_test(const char *text, ...)
+int	ft_printf_test(const char *text, ...)
 {
-	va_list	args;
-	int	length;
-	t_print	struc;
-	// char	*ret_pf;
-	// char	*ret_ft_pf;
+	va_list		args;
+	t_print		*struc;
+	int			length;
+	char		buffer[MAX_LENGTH];
 
-	struc.print = (char *)malloc(MAX_LENGTH * sizeof(char));
-	struc.print[0] = '\0';
+	struc = (t_print *)malloc(sizeof(t_print));
+	malloc_struc_variables(&struc, text);
 	va_start(args, text);
-
-	char buffer[MAX_LENGTH];  // Buffer para almacenar el string formateado
-	vsprintf(buffer, text, args);
-	length = ft_len_str(buffer);
-	printf("\nBuffer: %s", buffer);
-	printf("\nBuffer length: %i", length);
-
-
-
+	while (*text)
+	{
+		if (*text == '%')
+			text = ft_txt_handle_pcnt(++text, &struc, args);
+		else
+			text = ft_txt_read_until_pcnt(text, &struc);
+	}
+	length = ft_put_string(struc->print);
 	va_end(args);
-	free(struc.print);
 
+	va_start(args, text);
+	vsprintf(buffer, struc->copy_text, args);
+	va_end(args);
+	ft_strcpy(buffer, struc->buffer, 0);
+
+	printf("\nstruc->position: %i", struc->position);
+	printf("\nlength: %i", length);
+	printf("\nBuffer: %s", buffer);
+	printf("\nBuffer length: %i", ft_len_str(buffer));
+
+	free_struc(&struc);
+	return (length);
 }
-
 
 void	test_00(void)
 {
  	char character = 'k';
     char string[] = "Esto es un string";
 
-	printf("\n\nTEST 00 - impreme un CARACTER y un STRING");
-	ft_printf("\nEl carácter es: \"%c\" y el string es: \"%s\"", character, string);
-	ft_test("\nEl carácter es: \"%c\" y el string es: \"%s\"", character, string);
+	ft_printf("\n\nTEST 00 - impreme un CARACTER y un STRING");
+	// printf("\nEl carácter es: \"%c\" y el string es: \"%s\"", character, string);
+	// ft_printf("\nEl carácter es: \"%c\" y el string es: \"%s\"", character, string);
+	ft_printf_test("\nEl carácter es: \"%c\" y el string es: \"%s\"", character, string);
 }
 
 void	test_01(void)
 {
  	int min = -2147483648;
  	int max = 2147483647;
-	int length;
 
 	printf("\n\nTEST 01 - variables tipo INT min y max");
-	ft_test("\nEl entéro mínimo es: \"%i\" y el máximo es: \"%i\"", min, max);
-	length = printf("\nEl entéro mínimo es: \"%u\" y el máximo es: \"%u\"", min, max);
-	printf("\nprintf length: %i", length);
+	printf("\nEl entéro mínimo es: \"%i\" y el máximo es: \"%i\"", min, max);
+	ft_printf_test("\nEl entéro mínimo es: \"%i\" y el máximo es: \"%i\"", min, max);
 
 }
 
-// typedef struct s_test_general
-// {
-// 	int	counter;
-// 	int	title;
-// }	t_test_general;
 
-// typedef struct s_test
-// {
-// 	char	out_pf[4096];
-// 	char	out_ft_pf[4096];
-// 	int		ret_pf;
-// 	int		ret_ft_pf;
-// 	char	*result;
-// }	t_test;
-
-// void	ft_test(const char *text, ...)
-// {
-// 	va_list	args;
-// 	t_test	test;
-
-// 	va_start(args, text);
-// 	test.ret_pf = vsnprintf(test.out_pf, sizeof(test.out_pf), text, args);
-// 	test.ret_ft_pf = ft_len_str(test.out_ft_pf);
-
-	
 
 // 	//Revisar esta parte y ver si asi tiene sentido
 // 	//si hay que modificar la función s_ft_printf
 // 	//Y si sería mejor hacerlo con un puntero, y reservarle memoria con malloc
 // 	ft_strlcpy(test.out_ft_pf, s_ft_printf(text, args), size_t size);
 
-	
-// 	va_end(args);
-// 	if (ft_strcmp(test.out_pf, test.out_ft_pf) == 1)
-// 		test.result = "KO";
-// 	if (test.ret_ft_pf != test.ret_pf)
-// 		test.result = "KO";
-// 	if (test.result == "KO")
-// 		test.result = "\033[1;31m [ FAILLLLL ] \033[1;0m";
-// 	else
-// 		test.result = "\033[1;32m [ OK ] \033[1;0m";
+
+
 // 	printf("\n%s", test.out_pf);
 // 	printf("\n%s", test.out_ft_pf);
 // 	printf("\n%i", test.ret_pf);
@@ -146,11 +99,19 @@ void	test_01(void)
 
 int	main(void)
 {
-	printf("El valor máximo de int es: %d\n", INT_MAX);
-    printf("El valor mínimo de int es: %d\n", INT_MIN);
+	// printf("El valor máximo de int es: %d\n", INT_MAX);
+    // printf("El valor mínimo de int es: %d\n", INT_MIN);
 	test_00();
-	test_01();
+	// test_01();
 
+
+	// length = ft_printf("hola caracola");
+	// printf("\nreturned length: %i", length);
+	// length = ft_printf("");
+	// printf("\nreturned length: %i", length);
+	// char kk[2];
+	// length = printf("%s", kk);
+	// printf("\nreturned length: %i", length);
 
 	
 

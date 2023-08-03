@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:21:11 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/03 14:21:01 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/03 18:54:20 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,10 @@ const char	*ft_txt_read_until_pcnt(const char *text, t_print **struc)
 	i = 1;
 	while (*text)
 	{
-		printf("\ni: %i", i);
-		
 		if (*text == '%')
 			return ((char *)text);
 		ft_save_char(*text, struc);
-
-		printf("\n");
-
 		text++;
-
 		i++;
 	}
 	return ((char *)text);

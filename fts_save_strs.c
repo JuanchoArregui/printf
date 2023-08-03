@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/03 17:47:03 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/03 19:36:04 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_save_char(char c, t_print **struc)
 {
-	(*struc)->print[(*struc)->length] = c;
-	(*struc)->length += 1;
+	(*struc)->print[(*struc)->position] = c;
+	(*struc)->print[(*struc)->position + 1] = '\0';
+	(*struc)->position += 1;
 }
 
 void	ft_save_string(char *s, t_print **struc)
 {
 	int	i;
-	int	position;
 
 	if (!s)
 	{
@@ -30,12 +30,12 @@ void	ft_save_string(char *s, t_print **struc)
 	else
 	{
 		i = 0;
-		position = (*struc)->length;
 		while (s[i])
 		{
-			(*struc)->print[position + i] = s[i];
+			(*struc)->print[(*struc)->position + i] = s[i];
 			i++;
 		}
-		(*struc)->length += i;
+		(*struc)->print[(*struc)->position + i] = '\0';
+		(*struc)->position += i;
 	}
 }

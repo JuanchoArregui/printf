@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/03 17:45:08 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/04 00:26:48 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,17 @@
 
 typedef struct s_print
 {
-	char	*print;
-	int		length;
-	char	*real;
+	char		*print;
+	int			position;
+	const char	*copy_text;
+	char		*buffer;
 }	t_print;
 
 /* -------- ft_printf.c */
 /* -------- Main PRINTF function */
 int			ft_printf(const char *text, ...);
-void		malloc_struc_variables(t_print **struc)
-void		free_struc(t_print **struc)
+void		malloc_struc_variables(t_print **struc, const char	*text);
+void		free_struc(t_print **struc);
 /* -------- fts_handling_main_txt.c */
 /* -------- Handling the text to print */
 const char	*ft_txt_read_until_pcnt(const char *text, t_print **struc);
@@ -48,16 +49,13 @@ void		ft_save_num_base(long int nb, char base_type, t_print **struc);
 /* -------- Printing String functions */
 int			ft_put_char(char c);
 int			ft_put_string(char *s);
-
-
-
 // /* -------- fts_len.c  */
 int			ft_len_str(const char *s);
 int			ft_len_int(int nb, char c);
-
-
-
-
+// /* -------- fts_str.c  */
+int			*ft_strcpy(const char *src, char *dst, size_t dst_start);
+int			ft_strcmp(const char *str1, const char *str2);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 /* ---------- fts_test.c Testing functions */
 void		ft_test(const char *text, ...);
 int			main(void);

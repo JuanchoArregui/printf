@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fts_txt.c                                          :+:      :+:    :+:   */
+/*   fts_str.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:21:11 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/04 00:20:40 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/04 01:08:45 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	*ft_strcpy(const char *src, char *dst, size_t dst_start)
+int	ft_strcpy(const char *src, char *dst, size_t dst_start)
 {
 	size_t	i;
 

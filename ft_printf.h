@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/04 00:26:48 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/04 01:50:09 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_print
 {
 	char		*print;
 	int			position;
+	int			length;
 	const char	*copy_text;
 	char		*buffer;
 }	t_print;
@@ -53,11 +54,18 @@ int			ft_put_string(char *s);
 int			ft_len_str(const char *s);
 int			ft_len_int(int nb, char c);
 // /* -------- fts_str.c  */
-int			*ft_strcpy(const char *src, char *dst, size_t dst_start);
 int			ft_strcmp(const char *str1, const char *str2);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
+int			ft_strcpy(const char *src, char *dst, size_t dst_start);
+/* ---------- fts_test_0.c Tests */
+void		test_00(void);
+void		test_01(void);
+void		test_02(void);
+void		test_03(void);
+void		test_04(void);
 /* ---------- fts_test.c Testing functions */
-void		ft_test(const char *text, ...);
+int			ft_printf_test(const char *text, ...);
+void		ft_check_test(t_print **struc);
 int			main(void);
 
 #endif

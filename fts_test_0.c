@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/04 02:12:34 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/04 02:21:28 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	test_00(void)
 
 void	test_01(void)
 {
-	ft_printf("\n\nTEST 01 - caracteres raros y con %%");
+	ft_printf("\n\nTEST 01 - caracteres raros y con SIMBOLO PORCENTAJE");
 	ft_printf_test("\nªº!@~#=?¿\n12345\n6789\"\'''öu'o'eèü¢``_%% %%");
 }
 

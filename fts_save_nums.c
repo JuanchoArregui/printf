@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/03 18:54:59 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/04 02:18:15 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_get_basechars(char base_type)
 		return ("0123456789ABCDEF");
 	else if (base_type == 'x')
 		return ("0123456789abcdef");
-	else if (base_type == 'd')
+	else
 		return ("0123456789");
 	return (NULL);
 }
@@ -29,7 +29,7 @@ int	ft_get_base(char base_type)
 		return (16);
 	else if (base_type == 'x')
 		return (16);
-	else if (base_type == 'd' || base_type == 'i' )
+	else
 		return (10);
 	return (0);
 }

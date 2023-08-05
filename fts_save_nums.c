@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/04 02:18:15 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/05 03:51:20 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,15 @@ int	ft_get_base(char base_type)
 
 void	ft_save_pointer(size_t ptr, t_print **struc)
 {
-	ft_save_string("0x", struc);
-	ft_save_num_base(ptr, 'x', struc);
+	if (ptr == NULL)
+	{
+		ft_save_string("(nil)", struc);
+	}
+	else
+	{
+		ft_save_string("0x", struc);
+		ft_save_num_base(ptr, 'x', struc);
+	}
 }
 
 void	ft_save_num_base(long int nb, char base_type, t_print **struc)

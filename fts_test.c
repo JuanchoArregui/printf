@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/04 02:31:50 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/05 03:48:52 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_printf_test(const char *text, ...)
 		else
 			text = ft_txt_read_until_pcnt(text, &struc);
 	}
-	length = ft_put_string(struc->print);
+	length = ft_len_str(struc->print);
 	va_end(args);
 
 	struc->length = length;
@@ -41,8 +41,6 @@ int	ft_printf_test(const char *text, ...)
 	ft_strcpy(buffer, struc->buffer, 0);
 	ft_check_test(&struc);
 
-	
-
 	free_struc(&struc);
 	return (length);
 }
@@ -50,24 +48,38 @@ int	ft_printf_test(const char *text, ...)
 void	ft_check_test(t_print **struc)
 {
 	int check;
+	int error;
 
 	if ((*struc)->length == ft_len_str((*struc)->buffer))
-		printf("\n\033[32mLength comparison OK\033[0m");
-	else
-		printf("\n\033[31mLength comparison Error\033[0m ft_printf: %i printf: %i", (*struc)->length, ft_len_str((*struc)->buffer));
-	check = ft_strcmp((*struc)->print, (*struc)->buffer);
-	if (check == 1)
-		printf("\n\033[32mString comparison OK\033[0m");
+		printf("[ \033[32mOK\033[0m");
 	else
 	{
-		printf("\n\033[31mString comparison Error\033[0m ft_printf: %i printf: %i", (*struc)->length, ft_len_str((*struc)->buffer));
-		printf("\nft_printf: %s", (*struc)->print);
-		printf("\nprintf: %s", (*struc)->buffer);
+		printf("[ \033[31mKO\033[0m");
+		error = 1;
+	}
+	check = ft_strcmp((*struc)->print, (*struc)->buffer);
+	if (check == 1)
+		printf(" - \033[32mOK\033[0m ]     ");
+	else
+	{
+		printf(" - \033[31mKO\033[0m ]     ");
+		error = 1;
+		
+	}
+	if (error == 1)
+	{
+		printf("\nPrinted at ft_printf: %s", (*struc)->print);
+		printf("\nReturned at ft_printf: %i", (*struc)->length);
+		printf("\nTo be printed at printf: %s", (*struc)->buffer);
+		printf("\nTo be returned at printf: %i\n", ft_len_str((*struc)->buffer));
 	}
 }
 
 int	main(void)
 {
+	int kk = printf("%p", NULL);
+	printf("%i", kk);
+	
 	test_00();
 	test_01();
 	test_02();

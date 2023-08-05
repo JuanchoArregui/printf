@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:21:11 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/04 01:47:12 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/05 03:55:34 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ const char	*ft_txt_handle_pcnt(const char *text, t_print **struc, va_list args)
 	else if (*text == 's')
 		ft_save_string(va_arg(args, char *), struc);
 	else if (*text == 'p')
-		ft_save_pointer(va_arg(args, size_t), struc);
+		ft_save_pointer(va_arg(args, void *), struc);
 	else if (*text == 'd')
 		ft_save_num_base(va_arg(args, int), 'd', struc);
 	else if (*text == 'i')

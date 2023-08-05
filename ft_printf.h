@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/04 01:50:09 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/05 03:55:50 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		ft_save_string(char *s, t_print **struc);
 /* -------- Saving numbers to be printed at structure */
 char		*ft_get_basechars(char base_type);
 int			ft_get_base(char base_type);
-void		ft_save_pointer(size_t ptr, t_print **struc);
+void		ft_save_pointer(void *ptr, t_print **struc);
 void		ft_save_num_base(long int nb, char base_type, t_print **struc);
 /* -------- fts_put_strs.c */
 /* -------- Printing String functions */

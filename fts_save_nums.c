@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/05 03:51:20 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/05 04:59:57 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_get_base(char base_type)
 	return (0);
 }
 
-void	ft_save_pointer(size_t ptr, t_print **struc)
+void	ft_save_pointer(void *ptr, t_print **struc)
 {
 	if (ptr == NULL)
 	{
@@ -43,7 +43,7 @@ void	ft_save_pointer(size_t ptr, t_print **struc)
 	else
 	{
 		ft_save_string("0x", struc);
-		ft_save_num_base(ptr, 'x', struc);
+		ft_save_num_base((long int)ptr, 'x', struc);
 	}
 }
 
@@ -75,59 +75,3 @@ void	ft_save_num_base(long int nb, char base_type, t_print **struc)
 		i--;
 	}
 }
-
-
-
-
-
-
-// int	ft_puthexa(size_t nb, int upper)
-// {
-// 	char	*hexa;
-// 	int		res[100];
-// 	int		i;
-// 	int		partial;
-
-// 	if (upper)
-// 		hexa = "0123456789ABCDEF";
-// 	else
-// 		hexa = "0123456789abcdef";
-// 	i = 0;
-// 	while (nb > 16)
-// 	{
-// 		res[i] = hexa[nb % 16];
-// 		nb /= 16;
-// 		i++;
-// 	}
-// 	res[i] = hexa[nb];
-// 	partial = i + 1;
-// 	while (i >= 0)
-// 	{
-// 		ft_put_char(res[i]);
-// 		i--;
-// 	}
-// 	return (partial);
-// }
-
-// void	ft_putnumber(int nb)
-// {
-// 	if (nb < 0)
-// 	{
-// 		if (nb == -2147483648)
-// 			ft_putstring("-2147483648");
-// 		else
-// 		{
-// 			ft_put_char('-');
-// 			ft_putnumber(-nb);
-// 		}
-// 	}
-// 	else if (nb > 10)
-// 	{
-// 		ft_putnumber(nb / 10);
-// 		ft_putnumber(nb % 10);
-// 	}
-// 	else
-// 	{
-// 		ft_put_char(nb + 48);
-// 	}
-// }

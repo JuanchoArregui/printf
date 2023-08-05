@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/05 03:48:52 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/05 04:50:18 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,11 @@ void	ft_check_test(t_print **struc)
 	}
 }
 
+
+
+
 int	main(void)
 {
-	int kk = printf("%p", NULL);
-	printf("%i", kk);
-	
 	test_00();
 	test_01();
 	test_02();

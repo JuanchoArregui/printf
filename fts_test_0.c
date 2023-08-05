@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/05 03:33:46 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/05 04:55:15 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,35 +62,51 @@ void	test_01(void)
 
 void	test_02(void)
 {
-	printf("\n\nTESTS GROUP 2 - POINTERS\n");
+	// printf("\n\nTESTS GROUP 2 - POINTERS\n");
 
-	int test = 42;
-	ft_printf_test("%p", &test);
-	ft_printf_test("%p is a virtual memory address", &test);
-	ft_printf_test("The address of the answer is %p", &test);
-	ft_printf_test("The address is %p, so what?", &test);
-	int *ptr = &test;
-	ft_printf_test("A pointer at %p points to %p", &test, &ptr);
-	ft_printf_test("This %p is a very strange address", (void *)(long int)test);
+	// int test = 42;
+	// ft_printf_test("%p", &test);
+	// ft_printf_test("%p is a virtual memory address", &test);
+	// ft_printf_test("The address of the answer is %p", &test);
+	// ft_printf_test("The address is %p, so what?", &test);
+	// int *ptr = &test;
+	// ft_printf_test("A pointer at %p points to %p", &test, &ptr);
+	// ft_printf_test("This %p is a very strange address", (void *)(long int)test);
 
-	char *mallocked = malloc(2);
-	ft_printf_test("This %p is an address from the heap", mallocked);
-	free(mallocked);
+	// char *mallocked = malloc(2);
+	// ft_printf_test("This %p is an address from the heap", mallocked);
+	// free(mallocked);
 	
-	ft_printf_test("%p", NULL);
-	ft_printf_test("The NULL macro represents the %p address", NULL);
-	ft_printf_test("This %p is even stranger", (void *)-1);
+	// ft_printf_test("%p", NULL);
+	// ft_printf_test("The (NIL)) represents position 0 of memory which is a non valid address %p ", NULL);
+	// ft_printf_test("This %p is even stranger", (void *)-1);
 }
 
 void	test_03(void)
 {
+	printf("\n\nTESTS GROUP 3 - DECIMAL\n");
+
+	int min = -2147483648;
+ 	int max = 2147483647;
+	ft_printf_test("%d", 0);
+	ft_printf_test("%d", 10);
+	ft_printf_test("%d, %d", 10, 20);
+	ft_printf_test("%d%d%d%d", 10, 20, 30, 5);
+	ft_printf_test("%d %d", 2147483647, (int)-2147483648);
+	ft_printf_test("42 - 84 is %d", -42);
+	ft_printf_test("%d C is the lowest temperature in the universe", -273);
+	ft_printf_test("\nhola qué tal %d, %d, %d... probando", 1, 2, 3);
+	ft_printf_test("\nEl entéro mínimo es: \"%d\" y el máximo es: \"%d\"", min, max);
+}
+
+
+void	test_04(void)
+{
+	
+
+
 	ft_printf("\n\nTEST 01 - caracteres raros y con SIMBOLO PORCENTAJE");
 	ft_printf_test("\nªº!@~#=?¿\n12345\n6789\"\'''öu'o'eèü¢``_%% %%");
-
-
-	ft_printf("\n\nTEST 02 - string con INT intercalados");
-	ft_printf_test("\nhola qué tal %i, %i, %i... probando", 1, 2, 3);
-
 
  	int min = -2147483648;
  	int max = 2147483647;
@@ -98,7 +114,6 @@ void	test_03(void)
 	ft_printf("\n\nTEST 01 - variables tipo INT min y max");
 	ft_printf_test("\nEl entéro mínimo es: \"%i\" y el máximo es: \"%i\"", min, max);
 }
-
 
 
 	

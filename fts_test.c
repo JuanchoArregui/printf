@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/05 04:50:18 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/07 00:46:35 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,17 @@ void	ft_check_test(t_print **struc)
 	}
 }
 
-
-
-
 int	main(void)
 {
 	test_00();
 	test_01();
 	test_02();
 	test_03();
+	test_04();
+	test_05();
+	test_06();
+	test_07();
+	test_08();
+	test_09();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/05 03:55:50 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/06 19:26:14 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void		ft_save_string(char *s, t_print **struc);
 char		*ft_get_basechars(char base_type);
 int			ft_get_base(char base_type);
 void		ft_save_pointer(void *ptr, t_print **struc);
+void		ft_save_negative_pointer(long int nb, t_print **struc);
 void		ft_save_num_base(long int nb, char base_type, t_print **struc);
 /* -------- fts_put_strs.c */
 /* -------- Printing String functions */
@@ -63,6 +64,11 @@ void		test_01(void);
 void		test_02(void);
 void		test_03(void);
 void		test_04(void);
+void		test_05(void);
+void		test_06(void);
+void		test_07(void);
+void		test_08(void);
+void		test_09(void);
 /* ---------- fts_test.c Testing functions */
 int			ft_printf_test(const char *text, ...);
 void		ft_check_test(t_print **struc);

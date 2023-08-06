@@ -6,7 +6,7 @@
 /*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:21:11 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/05 03:55:34 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/06 18:29:46 by juancho          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ const char	*ft_txt_handle_pcnt(const char *text, t_print **struc, va_list args)
 	else if (*text == 'i')
 		ft_save_num_base(va_arg(args, int), 'i', struc);
 	else if (*text == 'u')
-		ft_save_num_base(va_arg(args, int), 'u', struc);
+		ft_save_num_base(va_arg(args, unsigned int), 'u', struc);
 	else if (*text == 'x')
 		ft_save_num_base(va_arg(args, unsigned int), 'x', struc);
 	else if (*text == 'X')

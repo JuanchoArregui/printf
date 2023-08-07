@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 14:29:01 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:24:10 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_save_pointer(void *ptr, t_print **struc)
 {
 	if (ptr == NULL)
 	{
-		ft_save_string("(nil)", struc);
+		ft_save_string("0x0", struc);
 	}
 	else
 	{

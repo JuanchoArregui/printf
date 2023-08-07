@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 14:32:01 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/07 14:46:14 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			ft_strcmp(const char *str1, const char *str2);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 int			ft_strcpy(const char *src, char *dst, size_t dst_start);
 /* ---------- fts_tests_a.c Tests */
-char		*ft_long_str(void);
+char		*ft_long_str(char *res);
 void		test_00(void);
 void		test_01(void);
 void		test_02(void);

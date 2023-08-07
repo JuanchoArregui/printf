@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 12:28:37 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:25:26 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	malloc_struc_variables(t_print **struc, const char	*text)
 	(*struc)->print[0] = '\0';
 	(*struc)->copy_text = text;
 	(*struc)->buffer = (char *)malloc(MAX_LENGTH * sizeof(char));
+	(*struc)->position = 0;
 }
 
 void	free_struc(t_print **struc)

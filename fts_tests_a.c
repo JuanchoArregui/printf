@@ -6,18 +6,17 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 14:04:22 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:29:30 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "ft_printf.h"
 // #include <stdio.h>//esto es para poder usar el printf real
 
-// char	*ft_long_str(void)
+// char	*ft_long_str(char *res)
 // {
 // 	int		i;
 // 	int		dest;
-// 	char	res[151];
 
 // 	i = 0;
 // 	dest = 0;
@@ -51,6 +50,7 @@
 // {
 // 	char	*null_str = NULL;
 // 	char	*long_str;
+// 	char	res[151];
 
 // 	printf("\n\nTESTS GROUP 1 - STRINGS\n");
 // 	ft_printf_test("%s", "");
@@ -69,7 +69,7 @@
 // 	ft_printf_test("some naugty tests: %s", "0000%");
 // 	ft_printf_test("some naugty tests: %s", "    %");
 // 	ft_printf_test("some naugty tests: %s", "%000");
-// 	long_str = ft_long_str();
+// 	long_str = ft_long_str(res);
 // 	ft_printf_test("%s", long_str);
 // 	ft_printf_test("%s", null_str);
 // 	ft_printf_test("%s everywhere", null_str);

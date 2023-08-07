@@ -6,14 +6,14 @@
 #    By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:58:00 by jarregui          #+#    #+#              #
-#    Updated: 2023/08/07 16:21:59 by jarregui         ###   ########.fr        #
+#    Updated: 2023/08/07 16:38:03 by jarregui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
 # VARIABLES DECLARATION:
 CC			=	gcc
-CFLAGS		=	-Wall -Wextra -Werror -Wformat
+CFLAGS		=	-Wall -Wextra -Werror
 ARFLAGS		=	rcs
 NAME		=	libftprintf.a
 RM			=	/bin/rm -f

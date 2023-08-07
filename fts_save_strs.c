@@ -6,13 +6,11 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 16:26:06 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:37:41 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include "stdio.h"
-#include "string.h"
 
 void	ft_save_char(char c, t_print **struc)
 {

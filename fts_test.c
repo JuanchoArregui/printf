@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fts_test.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 00:46:35 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/07 13:34:07 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+/*
 #include "ft_printf.h"
 #include <stdio.h>//esto es para poder usar el printf real
 
@@ -33,22 +33,20 @@ int	ft_printf_test(const char *text, ...)
 	}
 	length = ft_len_str(struc->print);
 	va_end(args);
-
 	struc->length = length;
 	va_start(args, text);
 	vsprintf(buffer, struc->copy_text, args);
 	va_end(args);
 	ft_strcpy(buffer, struc->buffer, 0);
 	ft_check_test(&struc);
-
 	free_struc(&struc);
 	return (length);
 }
 
 void	ft_check_test(t_print **struc)
 {
-	int check;
-	int error;
+	int	check;
+	int	error;
 
 	if ((*struc)->length == ft_len_str((*struc)->buffer))
 		printf("[ \033[32mOK\033[0m");
@@ -64,7 +62,6 @@ void	ft_check_test(t_print **struc)
 	{
 		printf(" - \033[31mKO\033[0m ]     ");
 		error = 1;
-		
 	}
 	if (error == 1)
 	{
@@ -89,3 +86,4 @@ int	main(void)
 	test_09();
 	return (0);
 }
+*/

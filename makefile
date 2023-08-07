@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juancho <juancho@student.42.fr>            +#+  +:+       +#+         #
+#    By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:58:00 by jarregui          #+#    #+#              #
-#    Updated: 2023/08/04 01:07:08 by juancho          ###   ########.fr        #
+#    Updated: 2023/08/07 13:44:27 by jarregui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,8 @@ SRCS		=	ft_printf.c \
 SRCS_BONUS	=	fts_bonus.c
 
 SRCS_TEST	=	fts_test.c \
-				fts_test_0.c \
+				fts_tests_a.c \
+				fts_tests_b.c \
 
 OBJS		=	${SRCS:.c=.o}
 OBJS_BONUS	=	${SRCS_BONUS:.c=.o}

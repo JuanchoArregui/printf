@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fts_save_nums.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 00:44:10 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/07 13:21:52 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-#include <stdio.h>//esto es para poder usar el printf real
-
 
 char	*ft_get_basechars(char base_type)
 {
@@ -57,37 +54,31 @@ void	ft_save_pointer(void *ptr, t_print **struc)
 
 void	ft_save_negative_pointer(long int nb, t_print **struc)
 {
-	char	res[17];
-	char	*basechars;
-	char	buffer[17];
-	int		i;
-	int		base;
-	int		resto;
+	t_neg_ptr	neg_ptr;
 
-
-	resto = -1;
-	ft_strcpy(ft_get_basechars('f'), res, 0);
-	basechars = ft_get_basechars('F');
-	base = 16;
-	i = 0;
-	while (nb >= base)
+	neg_ptr.resto = -1;
+	ft_strcpy(ft_get_basechars('f'), &neg_ptr.res, 0);
+	neg_ptr.basechars = ft_get_basechars('F');
+	neg_ptr.base = 16;
+	neg_ptr.i = 0;
+	while (nb >= neg_ptr.base)
 	{	
-		resto = nb % base;
-		buffer[i] = basechars[resto];
-		nb /= base;
-		i++;
+		neg_ptr.resto = nb % neg_ptr.base;
+		neg_ptr.buffer[neg_ptr.i] = neg_ptr.basechars[neg_ptr.resto];
+		nb /= neg_ptr.base;
+		neg_ptr.i++;
 	}
-	if( resto == -1 || (i > 0 && resto == 0)) 
-		buffer[i] = basechars[nb];
+	if (neg_ptr.resto == -1 || (neg_ptr.i > 0 && neg_ptr.resto == 0))
+		neg_ptr.buffer[neg_ptr.i] = neg_ptr.basechars[nb];
 	else
-		buffer[i] = basechars[nb + 1];
-	buffer[i + 1] = '\0';
-	while (i >= 0)
+		neg_ptr.buffer[neg_ptr.i] = neg_ptr.basechars[nb + 1];
+	neg_ptr.buffer[neg_ptr.i + 1] = '\0';
+	while (neg_ptr.i >= 0)
 	{
-		res[15 - i] = buffer[i];
-		i--;
+		neg_ptr.res[15 - neg_ptr.i] = neg_ptr.buffer[neg_ptr.i];
+		neg_ptr.i--;
 	}
-	ft_save_string(res, struc);
+	ft_save_string(neg_ptr.res, struc);
 }
 
 void	ft_save_num_base(long int nb, char base_type, t_print **struc)

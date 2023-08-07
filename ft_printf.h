@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/06 19:26:14 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/07 14:02:37 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ typedef struct s_print
 	const char	*copy_text;
 	char		*buffer;
 }	t_print;
+
+typedef struct s_neg_ptr
+{
+	char	res[17];
+	char	*basechars;
+	char	buffer[17];
+	int		base;
+	int		resto;
+	int		i;
+}	t_neg_ptr;
+
+typedef struct s_len_int
+{
+	int	number;
+	int	neg;
+	int	i;
+}	t_len_int;
 
 /* -------- ft_printf.c */
 /* -------- Main PRINTF function */
@@ -54,16 +71,19 @@ int			ft_put_string(char *s);
 // /* -------- fts_len.c  */
 int			ft_len_str(const char *s);
 int			ft_len_int(int nb, char c);
+void		set_neg_pos(int nb, t_len_int *len_int);
 // /* -------- fts_str.c  */
 int			ft_strcmp(const char *str1, const char *str2);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 int			ft_strcpy(const char *src, char *dst, size_t dst_start);
-/* ---------- fts_test_0.c Tests */
+/* ---------- fts_tests_a.c Tests */
+char		*ft_long_str(void);
 void		test_00(void);
 void		test_01(void);
 void		test_02(void);
 void		test_03(void);
 void		test_04(void);
+/* ---------- fts_tests_b.c Tests */
 void		test_05(void);
 void		test_06(void);
 void		test_07(void);

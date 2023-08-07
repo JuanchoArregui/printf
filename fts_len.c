@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fts_len.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 15:28:40 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 00:39:18 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/07 13:16:25 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,50 +26,43 @@ int	ft_len_str(const char *s)
 
 int	ft_len_int(int nb, char c)
 {
-	int	i;
-	int	number;
-	int	neg;
+	t_len_int	len_int;
 
 	if (!nb)
 		return (1);
-	else if (nb < 0)
+	set_neg_pos(nb, &len_int);
+	if (c == 'i' || c == 'd')
 	{
-		neg = 1;
-		number = -nb;
-	}
-	else
-	{
-		neg = 0;
-		number = nb;
-	}
-	i = 0;
-	if (c == 'i')
-	{
-		while (number)
+		while (len_int.number)
 		{
-			number /= 10;
-			i++;
+			len_int.number /= 10;
+			len_int.i++;
 		}
-		return (i + neg);
-	}
-	else if (c == 'd')
-	{
-		while (number)
-		{
-			number /= 10;
-			i++;
-		}
-		return (i + neg);
 	}
 	else if (c == 'x')
 	{
-		while (number)
+		while (len_int.number)
 		{
-			number /= 16;
-			i++;
+			len_int.number /= 16;
+			len_int.i++;
 		}
-		return (i);
 	}
-	return (0);
+	else
+		return (0);
+	return (len_int.i + len_int.neg);
 }
 
+void	set_neg_pos(int nb, t_len_int *len_int)
+{
+	len_int->i = 0;
+	if (nb < 0)
+	{
+		len_int->neg = 1;
+		len_int->number = -nb;
+	}
+	else
+	{
+		len_int->neg = 0;
+		len_int->number = nb;
+	}
+}

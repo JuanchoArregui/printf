@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fts_handling_main_txt.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juancho <juancho@student.42.fr>            +#+  +:+       +#+        */
+/*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:21:11 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/06 18:29:46 by juancho          ###   ########.fr       */
+/*   Updated: 2023/08/07 12:30:12 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,4 @@ const char	*ft_txt_read_until_pcnt(const char *text, t_print **struc)
 		i++;
 	}
 	return ((char *)text);
-
 }

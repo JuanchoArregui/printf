@@ -6,12 +6,13 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 16:29:30 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/08 00:27:42 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "ft_printf.h"
 // #include <stdio.h>//esto es para poder usar el printf real
+// #include <limits.h>
 
 // char	*ft_long_str(char *res)
 // {
@@ -33,17 +34,12 @@
 // void	test_00(void)
 // {
 // 	printf("\n\nTESTS GROUP 0 - CHARACTERS\n");
-
 // 	ft_printf_test("%c", 'a');
-// 	ft_printf_test("%c%c%c*", '\0', '1', 1);
 // 	ft_printf_test("%c small string", 'a');
-// 	ft_printf_test("%c small string", '\0');
 // 	ft_printf_test("the char is: %c", 'a');
-// 	ft_printf_test("the char is: %c", '\0');
 // 	ft_printf_test("n%cs", 'a');
 // 	ft_printf_test("%c%c%c%c%c", 'a', 'i', 'u', 'e', 'o');
 // 	ft_printf_test("l%cl%cl%cl%cl%c", 'a', 'i', 'u', 'e', 'o');
-// 	ft_printf_test("l%cl%cl%cl%cl%c", '\0', '\0', '\0', 'e', '\0');
 // }
 
 // void	test_01(void)
@@ -102,6 +98,12 @@
 // 	ft_printf_test("This %p is even stranger", (void *)-2);
 // 	ft_printf_test("This %p is even stranger", (void *)-16);
 // 	ft_printf_test("This %p is even stranger", (void *)-17);
+// 	ft_printf_test("\nLONG_MIN: %p", LONG_MIN);
+// 	ft_printf_test("\nLONG_MAX %p", LONG_MAX);
+// 	ft_printf_test("\n-1: %p", -1);
+// 	ft_printf_test("\n(void *) %p", (void *)-1);
+// 	ft_printf_test("\nLONG_MIN: %p", 445645);
+// 	ft_printf_test("\nLONG_MAX %p", -456756);
 // }
 
 // void	test_03(void)

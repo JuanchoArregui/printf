@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 20:06:05 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/08 00:26:12 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,9 @@ typedef struct s_print
 	char		*print;
 	int			position;
 	int			length;
-	int			extra;
 	const char	*copy_text;
 	char		*buffer;
 }	t_print;
-
-typedef struct s_neg_ptr
-{
-	char	res[17];
-	char	*basechars;
-	char	buffer[17];
-	int		base;
-	int		resto;
-	int		i;
-}	t_neg_ptr;
 
 typedef struct s_len_int
 {
@@ -65,13 +54,11 @@ int			ft_get_base(char base_type);
 /* -------- fts_save_nums.c */
 /* -------- Saving numbers to be printed at structure */
 void		ft_save_pointer(void *ptr, t_print **struc);
-void		ft_set_neg_ptr(t_neg_ptr	*neg_ptr);
-void		ft_save_negative_pointer(long int nb, t_print **struc);
 void		ft_save_num_base(long int nb, char base_type, t_print **struc);
+void		ft_save_u_long(unsigned long nb, char base_type, t_print **struc);
 /* -------- fts_put_strs.c */
 /* -------- Printing String functions */
-int			ft_put_char(char c);
-int			ft_put_string(char *s);
+int			ft_put_string(char *s, int size);
 // /* -------- fts_len.c  */
 int			ft_len_str(const char *s);
 int			ft_len_int(int nb, char c);
@@ -93,6 +80,7 @@ void		test_06(void);
 void		test_07(void);
 void		test_08(void);
 void		test_09(void);
+void		test_10(void);
 /* ---------- fts_test.c Testing functions */
 int			ft_printf_test(const char *text, ...);
 void		ft_check_test(t_print **struc);

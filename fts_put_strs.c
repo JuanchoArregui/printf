@@ -6,22 +6,17 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/06/29 20:55:01 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/08 00:17:25 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_put_char(char c)
+int	ft_put_string(char *s, int size)
 {
-	write(1, &c, 1);
-	return (1);
-}
+	int	temp;
 
-int	ft_put_string(char *s)
-{
-	int	i;
-
+	temp = 0;
 	if (!s)
 	{
 		write(1, "(null)", 6);
@@ -29,12 +24,11 @@ int	ft_put_string(char *s)
 	}
 	else
 	{
-		i = 0;
-		while (s[i])
+		while (temp < size)
 		{
-			ft_put_char(s[i]);
-			i++;
+			write(1, &s[temp], 1);
+			temp++;
 		}
-		return (i);
+		return (size);
 	}
 }

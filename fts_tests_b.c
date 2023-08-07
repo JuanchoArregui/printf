@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 16:29:44 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/08 00:27:52 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,27 @@
 // 	++string;
 // 	ft_printf_test("%c - %s - %p %d", 'a', "test", (void *)0xdeadc0de, -20);
 // 	ft_printf_test("%i - %u - %x %X %%", -1, 20, -1, 200000000);
-// 	ft_printf_test("%c - %s - %p - %d - %i", '\0', "test", (void *)-1, 20, -20);
 // 	ft_printf_test("%c - %s - %p", 'c', "", (void *)-1);
 // 	ft_printf_test("%d - %i - %u - %x %X %%", 20, -20, -1, -1, 200000000);
 // 	ft_printf_test("%i - %s - %p", 20, "", (void *)-1);
 // 	ft_printf_test("%d - %c - %u - %x %X %%", '\0', -20, -1, -1, 200000000);
 // 	ft_printf_test("%c - %s - %p", 'b', null_str, NULL);
 // 	ft_printf_test("%d - %i - %u - %x %X %%", 20, -20, -1, -1, 200000000);
-// 	ft_printf_test("%c %s - %p - %d", '\0', null_str, (void *)0xdeadc0de, 0);
+// 	ft_printf_test("%s - %p - %d", null_str, (void *)0xdeadc0de, 0);
 // 	ft_printf_test("%i %u - %x - %X %%", (int)-2147483648, -1, -1, 200000000);
 // 	ft_printf_test("\nporcentaje \"%%\", $: \"%c\",ptr: %p", *string, &string);
 // 	ft_printf_test("\nhexa en minús: %x, y en mayús: %X", 34467797, 34467797);
+// }
+
+// void	test_10(void)
+// {
+// 	printf("\n\nTESTS GROUP 10 - WRONG BUT ARE RIGHT\n");
+// 	ft_printf_test("%c%c%c%c", '0', 0, '1', '2');
+// 	ft_printf_test("zero %c %c %c ", '0', 0, '1');
+// 	ft_printf_test("l%cl%cl%cl%cl%c", '\0', '\0', '\0', 'e', '\0');
+// 	ft_printf_test("the char is: %c", '\0');
+// 	ft_printf_test("%c small string", '\0');
+// 	ft_printf_test("%c%c%c*", '\0', '1', 1);
+// 	ft_printf_test("%c - %s - %p - %d - %i", '\0', "test", (void *)-1, 20, -20);
+// 	ft_printf_test("%c - %p - %d", '\0', (void *)0xdeadc0de, 0);
 // }

@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 20:13:16 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/08 00:27:30 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // 		else
 // 			text = ft_txt_read_until_pcnt(text, &struc);
 // 	}
-// 	length = ft_put_string(struc->print) + struc->extra;
+// 	length = struc->position;
 // 	va_end(args);
 // 	struc->length = length;
 // 	va_start(args, text);
@@ -73,23 +73,16 @@
 
 // int	main(void)
 // {
-// 	printf("\nprintf %c%c%c%c ", '0', 0, '1', '2');
-// 	printf("\n");
-// 	ft_printf("\nft_printf %c%c%c%c ", '0', 0, '1', '2');
-// ft_printf_test("\nft_printf %c%c%c%c ", '0', 0, '1', '2');
-// long int min = -2147483647;
-// long int max = 2147483647;
-// printf("\nprintf min ==  %p max == %p\n", min, max);
-// ft_printf("\nft_printf min ==  %p max == %p\n", min, max);
-// test_00();
-// test_01();
-// test_02();
-// test_03();
-// test_04();
-// test_05();
-// test_06();
-// test_07();
-// test_08();
-// test_09();
+// 	test_00();
+// 	test_01();
+// 	test_02();
+// 	test_03();
+// 	test_04();
+// 	test_05();
+// 	test_06();
+// 	test_07();
+// 	test_08();
+// 	test_09();
+// 	test_10();
 // 	return (0);
 // }

@@ -6,7 +6,7 @@
 #    By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:58:00 by jarregui          #+#    #+#              #
-#    Updated: 2023/08/07 16:38:03 by jarregui         ###   ########.fr        #
+#    Updated: 2023/08/08 00:36:11 by jarregui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,14 +29,14 @@ SRCS		=	ft_printf.c \
 				fts_str.c \
 
 
-SRCS_BONUS	=	fts_bonus.c
+# SRCS_BONUS	=	fts_bonus.c
 
 SRCS_TEST	=	fts_test.c \
 				fts_tests_a.c \
 				fts_tests_b.c \
 
 OBJS		=	${SRCS:.c=.o}
-OBJS_BONUS	=	${SRCS_BONUS:.c=.o}
+# OBJS_BONUS	=	${SRCS_BONUS:.c=.o}
 OBJS_TEST	=	${SRCS_TEST:.c=.o}
 
 # RULES DECLARATION:
@@ -52,9 +52,9 @@ clean:
 fclean:			clean
 					${RM} ${NAME}
 
-bonus:			${OBJS} ${OBJS_BONUS}
-					ar rc ${NAME} ${OBJS_BONUS}
-					ranlib ${NAME}
+# bonus:			${OBJS} ${OBJS_BONUS}
+# 					ar rc ${NAME} ${OBJS_BONUS}
+# 					ranlib ${NAME}
 
 test:			${OBJS} ${OBJS_BONUS} ${OBJS_TEST}
 				${CC} ${CFLAGS} -o ${EXEC_NAME} ${OBJS} ${OBJS_BONUS} ${OBJS_TEST}

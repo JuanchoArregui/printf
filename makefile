@@ -6,7 +6,7 @@
 #    By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:58:00 by jarregui          #+#    #+#              #
-#    Updated: 2023/08/07 13:44:27 by jarregui         ###   ########.fr        #
+#    Updated: 2023/08/07 14:29:46 by jarregui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ RM			=	/bin/rm -f
 EXEC_NAME	=	a.out
 
 SRCS		=	ft_printf.c \
+				fts_get.c \
 				fts_handling_main_txt.c \
 				fts_len.c \
 				fts_put_strs.c \

@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 14:02:37 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/07 14:32:01 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,14 @@ const char	*ft_txt_handle_pcnt(const char *text, t_print **struc, va_list arg);
 /* -------- Saving characters and string to be printed at structure */
 void		ft_save_char(char c, t_print **struc);
 void		ft_save_string(char *s, t_print **struc);
-/* -------- fts_save_nums.c */
-/* -------- Saving numbers to be printed at structure */
+/* -------- fts_get.c */
+/* -------- get functions used at fts_save_nums */
 char		*ft_get_basechars(char base_type);
 int			ft_get_base(char base_type);
+/* -------- fts_save_nums.c */
+/* -------- Saving numbers to be printed at structure */
 void		ft_save_pointer(void *ptr, t_print **struc);
+void		ft_set_neg_ptr(t_neg_ptr	*neg_ptr);
 void		ft_save_negative_pointer(long int nb, t_print **struc);
 void		ft_save_num_base(long int nb, char base_type, t_print **struc);
 /* -------- fts_put_strs.c */

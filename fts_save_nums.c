@@ -6,35 +6,11 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 13:21:52 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/07 14:29:01 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-char	*ft_get_basechars(char base_type)
-{
-	if (base_type == 'X')
-		return ("0123456789ABCDEF");
-	else if (base_type == 'x')
-		return ("0123456789abcdef");
-	else if (base_type == 'f')
-		return ("ffffffffffffffff");
-	else if (base_type == 'F')
-		return ("0fedcba987654321");
-	else
-		return ("0123456789");
-}
-
-int	ft_get_base(char base_type)
-{
-	if (base_type == 'X')
-		return (16);
-	else if (base_type == 'x')
-		return (16);
-	else
-		return (10);
-}
 
 void	ft_save_pointer(void *ptr, t_print **struc)
 {
@@ -52,15 +28,21 @@ void	ft_save_pointer(void *ptr, t_print **struc)
 	}
 }
 
+void	ft_set_neg_ptr(t_neg_ptr	*neg_ptr)
+{
+	neg_ptr->resto = -1;
+	neg_ptr->basechars = ft_get_basechars('F');
+	neg_ptr->base = 16;
+	neg_ptr->i = 0;
+}
+
 void	ft_save_negative_pointer(long int nb, t_print **struc)
 {
 	t_neg_ptr	neg_ptr;
+	char		res[17];
 
-	neg_ptr.resto = -1;
-	ft_strcpy(ft_get_basechars('f'), &neg_ptr.res, 0);
-	neg_ptr.basechars = ft_get_basechars('F');
-	neg_ptr.base = 16;
-	neg_ptr.i = 0;
+	ft_set_neg_ptr(&neg_ptr);
+	ft_strcpy(ft_get_basechars('f'), res, 0);
 	while (nb >= neg_ptr.base)
 	{	
 		neg_ptr.resto = nb % neg_ptr.base;
@@ -75,10 +57,10 @@ void	ft_save_negative_pointer(long int nb, t_print **struc)
 	neg_ptr.buffer[neg_ptr.i + 1] = '\0';
 	while (neg_ptr.i >= 0)
 	{
-		neg_ptr.res[15 - neg_ptr.i] = neg_ptr.buffer[neg_ptr.i];
+		res[15 - neg_ptr.i] = neg_ptr.buffer[neg_ptr.i];
 		neg_ptr.i--;
 	}
-	ft_save_string(neg_ptr.res, struc);
+	ft_save_string(res, struc);
 }
 
 void	ft_save_num_base(long int nb, char base_type, t_print **struc)

@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 16:37:41 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/07 19:58:36 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,16 @@
 
 void	ft_save_char(char c, t_print **struc)
 {
-	(*struc)->print[(*struc)->position] = c;
-	(*struc)->print[(*struc)->position + 1] = '\0';
-	(*struc)->position += 1;
+	if (c != 0)
+	{
+		(*struc)->print[(*struc)->position] = c;
+		(*struc)->print[(*struc)->position + 1] = '\0';
+		(*struc)->position += 1;
+	}
+	else
+	{
+		(*struc)->extra += 1;
+	}
 }
 
 void	ft_save_string(char *s, t_print **struc)

@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 14:46:14 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/07 20:06:05 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_print
 	char		*print;
 	int			position;
 	int			length;
+	int			extra;
 	const char	*copy_text;
 	char		*buffer;
 }	t_print;
@@ -95,6 +96,6 @@ void		test_09(void);
 /* ---------- fts_test.c Testing functions */
 int			ft_printf_test(const char *text, ...);
 void		ft_check_test(t_print **struc);
-int			main(void);
+// int			main(void);
 
 #endif

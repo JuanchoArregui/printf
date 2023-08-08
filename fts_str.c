@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:21:11 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/07 13:22:36 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:42:53 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,20 @@ int	ft_strcpy(const char *src, char *dst, size_t dst_start)
 	return (dst_start + i);
 }
 
+int	ft_strcpy_size(const char *src, char *dst, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		dst[i] = src[i];
+		++i;
+	}
+	dst[i] = '\0';
+	return (i);
+}
+
 int	ft_strcmp(const char *str1, const char *str2)
 {
 	size_t	i;
@@ -38,6 +52,22 @@ int	ft_strcmp(const char *str1, const char *str2)
 		++i;
 	}
 	if (str1[i] == '\0' && str2[i] == '\0')
+		return (1);
+	return (0);
+}
+
+int	ft_strcmp_size(const char *str1, const char *str2, size_t size)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < size)
+	{
+		if (str1[i] != str2[i])
+			return (0);
+		++i;
+	}
+	if (str1[size] == '\0' && str2[size] == '\0')
 		return (1);
 	return (0);
 }

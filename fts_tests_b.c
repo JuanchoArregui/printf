@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/08 00:27:52 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:43:31 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@
 
 // void	test_10(void)
 // {
-// 	printf("\n\nTESTS GROUP 10 - WRONG BUT ARE RIGHT\n");
+// 	printf("\n\nTESTS GROUP 10 - FUCKING ZEROES IN THE MIDDLE!!\n");
 // 	ft_printf_test("%c%c%c%c", '0', 0, '1', '2');
 // 	ft_printf_test("zero %c %c %c ", '0', 0, '1');
 // 	ft_printf_test("l%cl%cl%cl%cl%c", '\0', '\0', '\0', 'e', '\0');

@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/08 00:26:12 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/08 12:42:08 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef struct s_print
 	int			position;
 	int			length;
 	const char	*copy_text;
-	char		*buffer;
+	char		*printf_str;
+	int			printf_len;
 }	t_print;
 
 typedef struct s_len_int
@@ -64,9 +65,11 @@ int			ft_len_str(const char *s);
 int			ft_len_int(int nb, char c);
 void		set_neg_pos(int nb, t_len_int *len_int);
 // /* -------- fts_str.c  */
-int			ft_strcmp(const char *str1, const char *str2);
-size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 int			ft_strcpy(const char *src, char *dst, size_t dst_start);
+int			ft_strcpy_size(const char *src, char *dst, size_t size);
+int			ft_strcmp(const char *str1, const char *str2);
+int			ft_strcmp_size(const char *str1, const char *str2, size_t size);
+size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 /* ---------- fts_tests_a.c Tests */
 char		*ft_long_str(char *res);
 void		test_00(void);

@@ -6,7 +6,7 @@
 #    By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:58:00 by jarregui          #+#    #+#              #
-#    Updated: 2023/08/09 18:32:14 by jarregui         ###   ########.fr        #
+#    Updated: 2023/08/09 18:41:31 by jarregui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,8 +52,8 @@ clean:
 fclean:			clean
 					${RM} ${NAME}
 
-test:			${OBJS} ${OBJS_TEST}
-				${CC} ${CFLAGS} -o ${EXEC_NAME} ${OBJS} ${OBJS_TEST}
+# test:			${OBJS} ${OBJS_TEST}
+# 				${CC} ${CFLAGS} -o ${EXEC_NAME} ${OBJS} ${OBJS_TEST}
  
 re:				fclean all
 

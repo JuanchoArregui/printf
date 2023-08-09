@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/09 15:05:01 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:05:48 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ void		test_10(void);
 /* ---------- /tests/fts_test.c Testing functions */
 int			ft_printf_test(const char *text, ...);
 void		ft_check_test(t_print **struc);
-int			main(void);
+// int			main(void);
 
 #endif

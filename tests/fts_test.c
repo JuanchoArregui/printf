@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/09 15:05:17 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:05:46 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,6 @@
 // 		printf("\nTo be returned at printf: %i\n", (*struc)->printf_len);
 // 	}
 // }
-
-
-
 
 // int	main(void)
 // {

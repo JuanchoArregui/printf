@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/09 15:09:29 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:56:20 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ int	ft_printf(const char *text, ...)
 			text = ft_txt_read_until_pcnt(text, &struc);
 	}
 	va_end(args);
+	if (struc->error)
+		return (-1);
 	length = ft_put_string(struc->print, struc->position);
 	free_struc(&struc);
 	return (length);
@@ -61,6 +63,7 @@ int	malloc_struc_variables(t_print **struc, const char	*text)
 	(*struc)->print[0] = '\0';
 	(*struc)->copy_text = text;
 	(*struc)->position = 0;
+	(*struc)->error = 0;
 	(*struc)->printf_str = (char *)malloc(MAX_LENGTH * sizeof(char));
 	if (!(*struc)->printf_str)
 		return (free((*struc)->print), 0);

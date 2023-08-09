@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/09 15:08:36 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:00:35 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_print
 	const char	*copy_text;
 	char		*printf_str;
 	int			printf_len;
+	int			error;
 }	t_print;
 
 typedef struct s_len_int

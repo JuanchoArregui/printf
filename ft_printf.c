@@ -6,25 +6,27 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:02:59 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/09 12:52:09 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 15:09:29 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-// #ifndef MALLOC_FAIL
-// # define MALLOC_FAIL 0
-// #endif
+/* 
+#ifndef MALLOC_FAIL
+# define MALLOC_FAIL 0
+#endif
 
-// void	*malloc(size_t n)
-// {
-// 	static int	cnt = 0;
+void	*malloc(size_t n)
+{
+	static int	cnt = 0;
 
-// 	if (cnt == MALLOC_FAIL)
-// 		return (NULL);
-// 	cnt++;
-// 	return (calloc(n, 1));
-// }
+	if (cnt == MALLOC_FAIL)
+		return (NULL);
+	cnt++;
+	return (calloc(n, 1));
+}
+*/
 
 int	ft_printf(const char *text, ...)
 {

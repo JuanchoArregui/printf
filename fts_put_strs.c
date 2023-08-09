@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:34:53 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/08 00:17:25 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:13:10 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,12 @@
 
 int	ft_put_string(char *s, int size)
 {
-	int	temp;
-
-	temp = 0;
 	if (!s)
 	{
 		write(1, "(null)", 6);
 		return (6);
 	}
-	else
-	{
-		while (temp < size)
-		{
-			write(1, &s[temp], 1);
-			temp++;
-		}
-		return (size);
-	}
+	else if (size < 0)
+		return (-1);
+	return (write(1, s, size));
 }

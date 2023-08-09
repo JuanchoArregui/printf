@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/08 12:42:08 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:12:50 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_print
 {
 	char		*print;
 	int			position;
-	int			length;
 	const char	*copy_text;
 	char		*printf_str;
 	int			printf_len;
@@ -38,7 +37,7 @@ typedef struct s_len_int
 /* -------- ft_printf.c */
 /* -------- Main PRINTF function */
 int			ft_printf(const char *text, ...);
-void		malloc_struc_variables(t_print **struc, const char	*text);
+int			malloc_struc_variables(t_print **struc, const char	*text);
 void		free_struc(t_print **struc);
 /* -------- fts_handling_main_txt.c */
 /* -------- Handling the text to print */
@@ -70,21 +69,22 @@ int			ft_strcpy_size(const char *src, char *dst, size_t size);
 int			ft_strcmp(const char *str1, const char *str2);
 int			ft_strcmp_size(const char *str1, const char *str2, size_t size);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
-/* ---------- fts_tests_a.c Tests */
+/* ---------- /tests/fts_tests_a.c Tests */
 char		*ft_long_str(char *res);
+void		test_0(void);
 void		test_00(void);
 void		test_01(void);
 void		test_02(void);
 void		test_03(void);
 void		test_04(void);
-/* ---------- fts_tests_b.c Tests */
+/* ---------- /tests/fts_tests_b.c Tests */
 void		test_05(void);
 void		test_06(void);
 void		test_07(void);
 void		test_08(void);
 void		test_09(void);
 void		test_10(void);
-/* ---------- fts_test.c Testing functions */
+/* ---------- /tests/fts_test.c Testing functions */
 int			ft_printf_test(const char *text, ...);
 void		ft_check_test(t_print **struc);
 // int			main(void);

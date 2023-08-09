@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/09 18:28:39 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 19:08:04 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@
 // 	printf("\n\nTESTS GROUP 0 - NO FORMAT\n");
 
 // 	ft_printf_test("%");
-// 	ft_printf_test("%__hhhhola");
 // 	ft_printf_test("");
 // 	ft_printf_test("\001\002\007\v\010\f\r\n");
 // 	ft_printf_test("some naugty tests: %s", "0000%");

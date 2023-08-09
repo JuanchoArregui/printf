@@ -6,11 +6,11 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/08 12:43:21 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:11:56 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_printf.h"
+// #include "../ft_printf.h"
 // #include <stdio.h>//esto es para poder usar el printf real
 // #include <limits.h>
 
@@ -29,6 +29,19 @@
 // 	}
 // 	res[dest + 1] = '\0';
 // 	return (res);
+// }
+
+// void	test_0(void)
+// {
+// 	printf("\n\nTESTS GROUP 0 - NO FORMAT\n");
+
+// 	ft_printf_test("%");
+// 	ft_printf_test("%hhhhola");
+// 	// ft_printf_test("");
+// 	// ft_printf_test("\001\002\007\v\010\f\r\n");
+// 	// ft_printf_test("some naugty tests: %s", "0000%");
+// 	// ft_printf_test("some naugty tests: %s", "    %");
+// 	// ft_printf_test("some naugty tests: %s", "%000");
 // }
 
 // void	test_00(void)
@@ -62,9 +75,6 @@
 // 	ft_printf_test("%s", "000-0003");
 // 	ft_printf_test("%s", "0x42");
 // 	ft_printf_test("%s", "0x0000042");
-// 	ft_printf_test("some naugty tests: %s", "0000%");
-// 	ft_printf_test("some naugty tests: %s", "    %");
-// 	ft_printf_test("some naugty tests: %s", "%000");
 // 	long_str = ft_long_str(res);
 // 	ft_printf_test("%s", long_str);
 // 	ft_printf_test("%s", null_str);

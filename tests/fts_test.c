@@ -6,11 +6,11 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/08 12:49:02 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:51:00 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_printf.h"
+// #include "../ft_printf.h"
 // #include <stdio.h>//esto es para poder usar el printf real
 
 // int	ft_printf_test(const char *text, ...)
@@ -21,7 +21,10 @@
 // 	char		buffer[MAX_LENGTH];
 
 // 	struc = (t_print *)malloc(sizeof(t_print));
-// 	malloc_struc_variables(&struc, text);
+// 	if (!struc)
+// 		return (-1);
+// 	if (!malloc_struc_variables(&struc, text))
+// 		return (free(struc), -1);
 // 	va_start(args, text);
 // 	while (*text)
 // 	{
@@ -32,7 +35,6 @@
 // 	}
 // 	length = struc->position;
 // 	va_end(args);
-// 	struc->length = length;
 
 // 	//esto guarda en el buffer el string que daría printf
 // 	va_start(args, text);
@@ -65,8 +67,8 @@
 // 	int	l;
 
 // 	error = 0;
-// 	l = (*struc)->length;
-// 	if ((*struc)->length == (*struc)->printf_len)
+// 	l = (*struc)->position;
+// 	if ((*struc)->position == (*struc)->printf_len)
 // 	{
 // 		printf("[ \033[32mOK\033[0m");
 // 		check = ft_strcmp_size((*struc)->print, (*struc)->printf_str, l);
@@ -86,7 +88,7 @@
 // 	if (error == 1)
 // 	{
 // 		printf("\nPrinted at ft_printf: %s", (*struc)->print);
-// 		printf("\nReturned at ft_printf: %i", (*struc)->length);
+// 		printf("\nReturned at ft_printf: %i", (*struc)->position);
 // 		printf("\nTo be printed at printf: %s", (*struc)->printf_str);
 // 		printf("\nTo be returned at printf: %i\n", (*struc)->printf_len);
 // 	}
@@ -94,16 +96,24 @@
 
 // int	main(void)
 // {
-// 	test_00();
-// 	test_01();
-// 	test_02();
-// 	test_03();
-// 	test_04();
-// 	test_05();
-// 	test_06();
-// 	test_07();
-// 	test_08();
-// 	test_09();
-// 	test_10();
+// 	// int kk = printf("\nel 50%");
+// 	// int kk = printf("12345%");
+// 	// printf("\n%d", kk);
+
+// 	int kk = printf("%hhhhola");
+// 	printf("\n%d", kk);
+
+// 	// test_0();
+// 	// test_00();
+// 	// test_01();
+// 	// test_02();
+// 	// test_03();
+// 	// test_04();
+// 	// test_05();
+// 	// test_06();
+// 	// test_07();
+// 	// test_08();
+// 	// test_09();
+// 	// test_10();
 // 	return (0);
 // }

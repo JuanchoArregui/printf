@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    makefile                                           :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:58:00 by jarregui          #+#    #+#              #
-#    Updated: 2023/08/08 00:36:11 by jarregui         ###   ########.fr        #
+#    Updated: 2023/08/09 12:35:22 by jarregui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,9 @@ SRCS		=	ft_printf.c \
 
 # SRCS_BONUS	=	fts_bonus.c
 
-SRCS_TEST	=	fts_test.c \
-				fts_tests_a.c \
-				fts_tests_b.c \
+SRCS_TEST	=	./tests/fts_test.c \
+				./tests/fts_tests_a.c \
+				./tests/fts_tests_b.c \
 
 OBJS		=	${SRCS:.c=.o}
 # OBJS_BONUS	=	${SRCS_BONUS:.c=.o}
@@ -52,12 +52,8 @@ clean:
 fclean:			clean
 					${RM} ${NAME}
 
-# bonus:			${OBJS} ${OBJS_BONUS}
-# 					ar rc ${NAME} ${OBJS_BONUS}
-# 					ranlib ${NAME}
-
-test:			${OBJS} ${OBJS_BONUS} ${OBJS_TEST}
-				${CC} ${CFLAGS} -o ${EXEC_NAME} ${OBJS} ${OBJS_BONUS} ${OBJS_TEST}
+test:			${OBJS} ${OBJS_TEST}
+				${CC} ${CFLAGS} -o ${EXEC_NAME} ${OBJS} ${OBJS_TEST}
  
 re:				fclean all
 

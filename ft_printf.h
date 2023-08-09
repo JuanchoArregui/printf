@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:03:18 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/09 16:00:35 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:31:35 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 typedef struct s_print
 {
 	char		*print;
-	int			position;
+	int			length;
+	int			buff_position;
 	const char	*copy_text;
 	char		*printf_str;
 	int			printf_len;
@@ -48,6 +49,7 @@ const char	*ft_txt_handle_pcnt(const char *text, t_print **struc, va_list arg);
 /* -------- Saving characters and string to be printed at structure */
 void		ft_save_char(char c, t_print **struc);
 void		ft_save_string(char *s, t_print **struc);
+void		buffer_overflow_protec(t_print **struc);
 /* -------- fts_get.c */
 /* -------- get functions used at fts_save_nums */
 char		*ft_get_basechars(char base_type);
@@ -72,6 +74,7 @@ int			ft_strcmp_size(const char *str1, const char *str2, size_t size);
 size_t		ft_strlcpy(char *dst, const char *src, size_t size);
 /* ---------- /tests/fts_tests_a.c Tests */
 char		*ft_long_str(char *res);
+// void		test_0(void);
 void		test_0(void);
 void		test_00(void);
 void		test_01(void);

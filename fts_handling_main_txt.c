@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:21:11 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/09 15:57:05 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:19:40 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ const char	*ft_txt_handle_pcnt(const char *text, t_print **struc, va_list args)
 	else if (*text == '%')
 		ft_save_char('%', struc);
 	else
-		(*struc)->error = 1;
+		return (((*struc)->error = 1), text);
 	return (++text);
 }
 

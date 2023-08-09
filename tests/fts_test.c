@@ -6,7 +6,7 @@
 /*   By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 11:38:45 by jarregui          #+#    #+#             */
-/*   Updated: 2023/08/09 15:05:46 by jarregui         ###   ########.fr       */
+/*   Updated: 2023/08/09 18:36:51 by jarregui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,14 @@
 // 	if (!malloc_struc_variables(&struc, text))
 // 		return (free(struc), -1);
 // 	va_start(args, text);
-// 	while (*text)
+// 	while (*text && !struc->error)
 // 	{
 // 		if (*text == '%')
 // 			text = ft_txt_handle_pcnt(++text, &struc, args);
 // 		else
 // 			text = ft_txt_read_until_pcnt(text, &struc);
 // 	}
-// 	length = struc->position;
+// 	length = struc->length + struc->buff_position;
 // 	va_end(args);
 
 // 	//esto guarda en el buffer el string que daría printf
@@ -67,8 +67,8 @@
 // 	int	l;
 
 // 	error = 0;
-// 	l = (*struc)->position;
-// 	if ((*struc)->position == (*struc)->printf_len)
+// 	l = (*struc)->buff_position;
+// 	if ((*struc)->buff_position == (*struc)->printf_len)
 // 	{
 // 		printf("[ \033[32mOK\033[0m");
 // 		check = ft_strcmp_size((*struc)->print, (*struc)->printf_str, l);
@@ -88,7 +88,7 @@
 // 	if (error == 1)
 // 	{
 // 		printf("\nPrinted at ft_printf: %s", (*struc)->print);
-// 		printf("\nReturned at ft_printf: %i", (*struc)->position);
+// 		printf("\nReturned at ft_printf: %i", (*struc)->buff_position);
 // 		printf("\nTo be printed at printf: %s", (*struc)->printf_str);
 // 		printf("\nTo be returned at printf: %i\n", (*struc)->printf_len);
 // 	}
@@ -96,14 +96,10 @@
 
 // int	main(void)
 // {
-// 	// int kk = printf("\nel 50%");
-// 	// int kk = printf("12345%");
-// 	// printf("\n%d", kk);
 
-// 	int kk = printf("%hhhhola");
-// 	printf("\n%d", kk);
+// 	ft_printf("%__hhhhola");
 
-// 	// test_0();
+// 	test_0();
 // 	// test_00();
 // 	// test_01();
 // 	// test_02();

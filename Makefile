@@ -6,13 +6,14 @@
 #    By: jarregui <jarregui@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/18 13:58:00 by jarregui          #+#    #+#              #
-#    Updated: 2023/08/09 15:13:19 by jarregui         ###   ########.fr        #
+#    Updated: 2023/08/09 18:32:14 by jarregui         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # VARIABLES DECLARATION:
 CC			=	gcc
 CFLAGS		=	-Wall -Wextra -Werror
+# CFLAGS		=	-Wall -Wextra -Werror -fsanitize=address
 ARFLAGS		=	rcs
 NAME		=	libftprintf.a
 RM			=	/bin/rm -f
